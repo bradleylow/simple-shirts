@@ -2,12 +2,12 @@ import React from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
 
-const layout = ( props ) => (
+const layout = (props) => (
     <Aux>
-        <header>
+        <header className="container mx-auto">
             <p>Toolbar, SlideMenu</p>
         </header>
-        <main>
+        <main className="container mx-auto">
             {props.children}
         </main>
     </Aux>

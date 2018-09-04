@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import './assets/css/main.css';
 import './assets/css/tailwind.css';
+import './assets/css/main.css';
 
 import Layout from './components/Layout/Layout';
+import Shop from './containers/Shop/Shop';
 
 class App extends Component {
   render() {
     return (
         <Layout>
-            <div className="container mx-auto">
-                hi
-            </div>
+            <Shop />
         </Layout>
     );
   }

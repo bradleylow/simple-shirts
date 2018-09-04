@@ -1,0 +1,12 @@
+.products {
+
+    &__img-container {
+        height: 225px;
+
+        @include media((min-width: $media-lg)) {
+            height: 400px;
+        }
+
+    }//&__img-container
+
+}//.products

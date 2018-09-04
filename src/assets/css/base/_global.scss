@@ -20,3 +20,9 @@ body{
 }//body
 
 *:focus{ outline: none; }
+
+.image-cover img {
+	width: 100%;
+	height: inherit;
+	object-fit: cover;
+}

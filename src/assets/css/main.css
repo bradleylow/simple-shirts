@@ -1,3 +1,9 @@
+.products__img-container {
+  height: 225px; }
+  @media only screen and (min-width: 992px) {
+    .products__img-container {
+      height: 400px; } }
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -196,6 +202,11 @@ body {
 *:focus {
   outline: none; }
 
+.image-cover img {
+  width: 100%;
+  height: inherit;
+  object-fit: cover; }
+
 body,
 input,
 textarea {
@@ -204,43 +215,44 @@ textarea {
 h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 30px;
-  font-size: 3rem; }
+  font-size: 36px;
+  font-size: 3.6rem; }
 
 h2 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 26px;
-  font-size: 2.6rem; }
+  font-size: 32px;
+  font-size: 3.2rem; }
 
 h3 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 22px;
-  font-size: 2.2rem; }
+  font-size: 28px;
+  font-size: 2.8rem; }
 
 h4 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 18px;
-  font-size: 1.8rem; }
+  font-size: 24px;
+  font-size: 2.4rem; }
 
 h5 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  font-size: 1.6rem; }
+  font-size: 20px;
+  font-size: 2rem; }
 
 p {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  font-size: 1.6rem; }
+  font-size: 18px;
+  font-size: 1.8rem; }
 
 a {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  text-decoration: none; }
+  text-decoration: none;
+  color: inherit; }
   a:visited {
     color: inherit; }
 
