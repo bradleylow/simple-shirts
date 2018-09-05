@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
 import ProductItems from '../../components/ProductItems/ProductItems';
+import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
 
@@ -18,7 +19,7 @@ class Shop extends Component {
     }
 
     render () {
-        let productItems = null;
+        let productItems = <Loader type="full"/> ;
 
         if (this.state.products) {
             productItems = (
