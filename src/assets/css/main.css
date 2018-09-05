@@ -371,3 +371,9 @@ span {
   font-family: "Roboto", sans-serif;
   font-weight: inherit;
   color: inherit; }
+
+.product-page__img-container {
+  height: 400px; }
+  @media only screen and (min-width: 992px) {
+    .product-page__img-container {
+      height: 600px; } }

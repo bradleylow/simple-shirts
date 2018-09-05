@@ -13,7 +13,7 @@ class App extends Component {
     return (
         <Layout>
             <Switch>
-                <Route path="/products/:id" component={Product} />
+                <Route path="/product/:id" component={Product} />
                 <Route path="/" exact component={Shop} />
             </Switch>
         </Layout>

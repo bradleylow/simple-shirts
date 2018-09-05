@@ -12,7 +12,7 @@ class Shop extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://simple-shirts.firebaseio.com/products.json')
+        axios.get('/products.json')
             .then( response => {
                 this.setState({ products: response.data });
             });
