@@ -1,0 +1,14 @@
+.button{
+    padding: 10px 20px;
+    font-family: $font-main;
+    @include font-size(1.8);
+    font-weight: 600;
+    text-align: center;
+    color: $color-black;
+
+    &.button--blue{
+        background-color: $color-blue;
+        color: $color-white;
+    }
+
+}//.button

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import './assets/css/tailwind.css';
-import './assets/css/main.css';
-
 import Layout from './components/Layout/Layout';
 import Shop from './containers/Shop/Shop';
 import Product from './containers/Product/Product';

@@ -1,0 +1,29 @@
+.size-selector{
+
+    &__button{
+        display: inline-block;
+        min-width: 62px;
+        padding: 4px 20px;
+        margin-right: 5px;
+        font-family: $font-main;
+        @include font-size(1.8);
+        font-weight: 500;
+        color: $color-slate;
+        text-align: center;
+        border: 2px solid $color-slate;
+        cursor: pointer;
+        @include transition-style;
+
+        input[type="radio"] {
+            display: none;
+        }//input[type="radio"]
+
+        &.selected{
+            color: $color-white;
+            background-color: $color-blue;
+            border-color: $color-blue;
+        }
+
+    }//&__button
+
+}//.size-selector

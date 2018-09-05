@@ -1,8 +1,11 @@
 @import './utils/variables';
 @import './utils/mixins';
 
-@import './components/products';
+@import './components/buttons';
+@import './components/formsizeselector';
 @import './components/loader';
+@import './components/products';
+@import './components/quantitycontrol';
 
 @import './base/normalize';
 @import './base/global';

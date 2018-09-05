@@ -23,7 +23,6 @@ class Product extends Component {
 
                     products.map(product => {
                         if (product.id == this.props.match.params.id) {
-                            console.log(product);
                             this.setState({ product: product });
                         }
                     });
@@ -43,10 +42,41 @@ class Product extends Component {
                             <h1 className="product-page__name my-0 w-3/4">{this.state.product.name}</h1>
                             <h5 className="product-page__price w-1/4 text-right">${this.state.product.price}</h5>
                         </div>
-                        <div className="product-page__description">
+                        <div className="product-page__description mb-12">
                             <p>{this.state.product.description}</p>
                         </div>
+                        <div className="product-page__attributes">
+                            <div className="size-selector mb-8 lg:mb-12">
+                                <label className="size-selector__button">
+                                    S
+                                    <input type="radio" name="size" value="S" />
+                                </label>
+                                <label className="size-selector__button">
+                                    M
+                                    <input type="radio" name="size" value="M" />
+                                </label>
+                                <label className="size-selector__button">
+                                    L
+                                    <input type="radio" name="size" value="L" />
+                                </label>
+                                <label className="size-selector__button">
+                                    XL
+                                    <input type="radio" name="size" value="XL" />
+                                </label>
+                            </div>
+                            <div className="quantity-control mb-8 lg:mb-12">
+                                <div className="quantity-control__widget flex">
+                                    <button className="quantity-control__button">-</button>
+                                    <div id="quantity-control__counter" className="quantity-control__counter">1</div>
+                                    <button className="quantity-control__button">+</button>
+                                </div>
+                            </div>
+                            <div className="product-actions">
+                                <button className="product-actions__button button button--blue add-to-cart w-full">Add to Cart</button>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         );

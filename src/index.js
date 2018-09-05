@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import './index.css';
+import './assets/css/tailwind.css';
+import './assets/css/main.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

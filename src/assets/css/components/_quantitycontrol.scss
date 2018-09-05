@@ -1,0 +1,23 @@
+.quantity-control {
+
+    &__button {
+        min-width: 35px;
+        padding: 2px 10px;
+        font-family: $font-main;
+        @include font-size(2.4);
+        font-weight: 600;
+        color: $color-white;
+        text-align: center;
+        background-color: $color-slate;
+    }//&__button
+
+    &__counter {
+        padding: 2px 20px;
+        font-family: $font-main;
+        @include font-size(2);
+        font-weight: 500;
+        border-top: 3px solid $color-slate;
+        border-bottom: 3px solid $color-slate;
+    }//&__counter
+
+}//.quantity-control
