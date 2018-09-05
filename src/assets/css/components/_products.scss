@@ -2,11 +2,23 @@
 
     &__img-container {
         height: 225px;
+        overflow: hidden;
 
         @include media((min-width: $media-lg)) {
             height: 400px;
         }
 
     }//&__img-container
+
+    &__item {
+
+        h5 { @include transition-style; }
+
+        @include hover{
+
+            h5 { color: $color-blue; }
+        }
+
+    }//&__item
 
 }//.products
