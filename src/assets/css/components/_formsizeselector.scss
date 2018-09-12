@@ -1,6 +1,6 @@
 .size-selector{
 
-    &__button{
+    &__button {
         display: inline-block;
         min-width: 62px;
         padding: 4px 20px;
@@ -18,7 +18,12 @@
             display: none;
         }//input[type="radio"]
 
-        &.selected{
+        @include hover {
+            color: $color-blue;
+            border-color: $color-blue;
+        }
+
+        &.active {
             color: $color-white;
             background-color: $color-blue;
             border-color: $color-blue;

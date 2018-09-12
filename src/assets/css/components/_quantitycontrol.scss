@@ -9,13 +9,22 @@
         color: $color-white;
         text-align: center;
         background-color: $color-slate;
+        @include transition-style;
+
+        @include hover {
+            background-color: $color-blue;
+        }
+
     }//&__button
 
     &__counter {
+        display: inline-block;
+        width: 75px;
         padding: 2px 20px;
         font-family: $font-main;
         @include font-size(2);
         font-weight: 500;
+        text-align: center;
         border-top: 3px solid $color-slate;
         border-bottom: 3px solid $color-slate;
     }//&__counter

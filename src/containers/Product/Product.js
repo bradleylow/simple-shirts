@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/Aux/Aux';
+import RadioButton from '../../components/UI/FormElements/RadioButton/RadioButton';
 
 import axios from 'axios';
 
 class Product extends Component {
     state = {
         product: {},
-        quantity: null,
-        size: null
+        quantity: 1,
+        size: '',
+        cart: {
+            items: {},
+            totalPrice: null
+        }
     }
 
     componentDidMount() {
+        this.loadCart();
         this.loadProduct();
+    }
+
+    loadCart() {
+        axios.get('/cart.json')
+            .then(response => {
+                let cart = response.data;
+
+                if (cart) {
+                    this.setState({ cart: cart });
+                }
+            });
     }
 
     loadProduct() {
@@ -27,6 +43,44 @@ class Product extends Component {
                         }
                     });
                 });
+        }
+    }
+
+    sizeSelectorHandler(e) {
+        let el = e.target;
+
+        this.setState({ size: el.value });
+    }
+
+    addQuantityHandler() {
+        if (this.state.quantity < 25) {
+            this.setState({ quantity: this.state.quantity + 1 });
+        }
+    }
+
+    removeQuantityHandler() {
+        if (this.state.quantity > 1) {
+            this.setState({ quantity: this.state.quantity - 1 });
+        }
+    }
+
+    updateQuantityHandler(e) {
+        let el = e.target,
+            quantity = el.value;
+
+        if (quantity >= 25) {
+            quantity = 25;
+        }
+
+        this.setState({ quantity: parseInt(quantity) });
+
+    }
+
+    quantityBlurHandler(e) {
+        let el = e.target;
+
+        if (el.value == '') {
+            this.setState({ quantity: 1 })
         }
     }
 
@@ -47,28 +101,49 @@ class Product extends Component {
                         </div>
                         <div className="product-page__attributes">
                             <div className="size-selector mb-8 lg:mb-12">
-                                <label className="size-selector__button">
-                                    S
-                                    <input type="radio" name="size" value="S" />
-                                </label>
-                                <label className="size-selector__button">
-                                    M
-                                    <input type="radio" name="size" value="M" />
-                                </label>
-                                <label className="size-selector__button">
-                                    L
-                                    <input type="radio" name="size" value="L" />
-                                </label>
-                                <label className="size-selector__button">
-                                    XL
-                                    <input type="radio" name="size" value="XL" />
-                                </label>
+                                <form onChange={this.sizeSelectorHandler.bind(this)}>
+                                    <RadioButton
+                                        classList={'size-selector__button ' + (this.state.size === 'Small' ? 'active' : '')}
+                                        label="S"
+                                        name="size"
+                                        value="Small"
+                                    />
+                                    <RadioButton
+                                        classList={'size-selector__button ' + (this.state.size === 'Medium' ? 'active' : '')}
+                                        label="M"
+                                        name="size"
+                                        value="Medium"
+                                    />
+                                    <RadioButton
+                                        classList={'size-selector__button ' + (this.state.size === 'Large' ? 'active' : '')}
+                                        label="L"
+                                        name="size"
+                                        value="Large"
+                                    />
+                                    <RadioButton
+                                        classList={'size-selector__button ' + (this.state.size === 'X Large' ? 'active' : '')}
+                                        label="XL"
+                                        name="size"
+                                        value="X Large"
+                                    />
+                                </form>
                             </div>
                             <div className="quantity-control mb-8 lg:mb-12">
                                 <div className="quantity-control__widget flex">
-                                    <button className="quantity-control__button">-</button>
-                                    <div id="quantity-control__counter" className="quantity-control__counter">1</div>
-                                    <button className="quantity-control__button">+</button>
+                                    <button
+                                        className="quantity-control__button"
+                                        onClick={this.removeQuantityHandler.bind(this)}>-</button>
+                                    <input
+                                        id="quantity-control__counter"
+                                        className="quantity-control__counter"
+                                        type="text"
+                                        name="quantity"
+                                        value={isNaN(this.state.quantity) ? '' : this.state.quantity}
+                                        onChange={this.updateQuantityHandler.bind(this)}
+                                        onBlur={this.quantityBlurHandler.bind(this)}/>
+                                    <button
+                                        className="quantity-control__button"
+                                        onClick={this.addQuantityHandler.bind(this)}>+</button>
                                 </div>
                             </div>
                             <div className="product-actions">

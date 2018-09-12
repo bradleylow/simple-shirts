@@ -1,3 +1,6 @@
+button:focus {
+  outline: none; }
+
 .button {
   padding: 10px 20px;
   font-family: "Roboto", sans-serif;
@@ -30,7 +33,11 @@
   transition: all 0.3s ease; }
   .size-selector__button input[type="radio"] {
     display: none; }
-  .size-selector__button.selected {
+  @media only screen and (min-width: 1024px), (hover: hover) {
+    .size-selector__button:hover {
+      color: #2789c6;
+      border-color: #2789c6; } }
+  .size-selector__button.active {
     color: #fff;
     background-color: #2789c6;
     border-color: #2789c6; }
@@ -161,14 +168,25 @@
   font-weight: 600;
   color: #fff;
   text-align: center;
-  background-color: #9aacbf; }
+  background-color: #9aacbf;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+  @media only screen and (min-width: 1024px), (hover: hover) {
+    .quantity-control__button:hover {
+      background-color: #2789c6; } }
 
 .quantity-control__counter {
+  display: inline-block;
+  width: 75px;
   padding: 2px 20px;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-size: 2rem;
   font-weight: 500;
+  text-align: center;
   border-top: 3px solid #9aacbf;
   border-bottom: 3px solid #9aacbf; }
 
