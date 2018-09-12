@@ -58,6 +58,16 @@ button:focus {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
 
+.loader--inject {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
 .sk-folding-cube {
   margin: 20px auto;
   width: 40px;
@@ -448,6 +458,7 @@ span {
   color: inherit; }
 
 .product-page__img-container {
+  position: relative;
   height: 400px; }
   @media only screen and (min-width: 992px) {
     .product-page__img-container {

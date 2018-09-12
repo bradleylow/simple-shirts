@@ -15,6 +15,13 @@
         }
     }//&--full
 
+    &--inject{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+    }
+
 }//.loader
 
 .sk-folding-cube {

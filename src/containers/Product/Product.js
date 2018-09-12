@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RadioButton from '../../components/UI/FormElements/RadioButton/RadioButton';
+import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
 
@@ -124,11 +125,19 @@ class Product extends Component {
     }
 
     render () {
+        let productImg = <Loader type="inject"/>;
+
+        if (this.state.product.image) {
+            productImg = (
+                <img src={require('../../assets/images/' + this.state.product.image)} alt={this.state.product.name + ' image'} className="product-page__img"/>
+            )
+        }
+
         return (
             <div className="product-page">
                 <div className="product-page__product flex flex-wrap lg:px-6 lg:-mx-12">
                     <div className="product-page__img-container image-cover w-full lg:w-2/3 lg:px-6">
-                        <img src={require('../../assets/images/blue-shirt.jpg')} alt={this.state.product.name + ' image'} className="product-page__img"/>
+                        {productImg}
                     </div>
                     <div className="product-page__info w-full lg:w-1/3 px-4 lg:px-0 lg:px-6">
                         <div className="product-page__details flex flex-wrap items-center my-6">
@@ -190,7 +199,6 @@ class Product extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         );
