@@ -1,0 +1,63 @@
+.logo {
+    background-color: $color-blue;
+
+    h4{
+        color: $color-white;
+        line-height: 1.2;
+    }
+
+}//.logo
+
+.main-nav {
+
+    ul {
+
+        li {
+            margin-right: 30px;
+            @include font-size(1.8);
+
+            &:last-of-type{ margin-right: 0; }
+        }//li
+
+    }//ul
+
+}//.main-nav
+
+.nav-toggle {
+    position: relative;
+    width: 18px;
+    height: 9px;
+    cursor: pointer;
+
+    &__bar {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: $color-black;
+        @include transition-style;
+
+        &--top {
+            top: 0;
+            left: 0;
+        }//&.bar-top
+
+        &--bottom {
+            bottom: 0;
+            left: 0;
+        }//&.bar-top
+
+    }//.bar
+
+    &.open {
+
+        &__bar {
+            top: 50%;
+            margin-top: -1px;
+            background-color: $color-blue;
+
+            &--bottom { opacity: 0; }
+        }
+
+    }//&.open .bar
+
+}//.nav-toggle

@@ -200,6 +200,47 @@ button:focus {
   border-top: 3px solid #9aacbf;
   border-bottom: 3px solid #9aacbf; }
 
+.logo {
+  background-color: #2789c6; }
+  .logo h4 {
+    color: #fff;
+    line-height: 1.2; }
+
+.main-nav ul li {
+  margin-right: 30px;
+  font-size: 18px;
+  font-size: 1.8rem; }
+  .main-nav ul li:last-of-type {
+    margin-right: 0; }
+
+.nav-toggle {
+  position: relative;
+  width: 18px;
+  height: 9px;
+  cursor: pointer; }
+  .nav-toggle__bar {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+    .nav-toggle__bar--top {
+      top: 0;
+      left: 0; }
+    .nav-toggle__bar--bottom {
+      bottom: 0;
+      left: 0; }
+  .nav-toggle.open__bar {
+    top: 50%;
+    margin-top: -1px;
+    background-color: #2789c6; }
+    .nav-toggle.open__bar--bottom {
+      opacity: 0; }
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;

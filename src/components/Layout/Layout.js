@@ -1,12 +1,11 @@
 import React from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
+import Header from '../../components/Navigation/Header/Header';
 
 const layout = (props) => (
     <Aux>
-        <header className="container mx-auto">
-            
-        </header>
+        <Header />
         <main className="container mx-auto">
             {props.children}
         </main>
