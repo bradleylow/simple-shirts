@@ -12,6 +12,7 @@ html {
 
 body{
 	width: 100%;
+	padding-top: 68px;
 	background-color: $color-white;
 	overflow-x: hidden;
 
@@ -25,4 +26,14 @@ body{
 	width: 100%;
 	height: inherit;
 	object-fit: cover;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 9997;
 }

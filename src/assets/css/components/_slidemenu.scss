@@ -1,0 +1,26 @@
+.slide-menu {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    width: 80%;
+    height: calc(100% - 68px);
+    background-color: $color-white;
+    z-index: 9998;
+
+    &__nav {
+
+        ul li {
+            text-align: right;
+            border-bottom: 1px solid $color-light-gray;
+
+            a {
+                display: inline-block;
+                padding: 20px;
+                @include font-size(1.8);
+            }
+
+        }//ul
+
+    }//&__nav
+
+}//.slide-menu

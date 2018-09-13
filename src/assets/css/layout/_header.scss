@@ -8,6 +8,15 @@
 
 }//.logo
 
+header {
+    position: fixed;
+    top: 0;
+    left: auto;
+    width: 100%;
+    z-index: 9999;
+    background-color: $color-white;
+}//header
+
 .main-nav {
 
     ul {
