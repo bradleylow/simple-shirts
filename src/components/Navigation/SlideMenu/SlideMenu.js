@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const slideMenu = (props) => {
     return (
@@ -6,13 +7,13 @@ const slideMenu = (props) => {
             <nav className="slide-menu__nav">
                 <ul>
                     <li>
-                        <a href="/">Shop</a>
+                        <NavLink to="/" exact>Shop</NavLink>
                     </li>
                     <li>
-                        <a href="#">Account</a>
+                        <NavLink to="/account" exact>Account</NavLink>
                     </li>
                     <li>
-                        <a href="#">Checkout</a>
+                        <NavLink to="/cart" exact>Cart</NavLink>
                     </li>
                 </ul>
             </nav>
