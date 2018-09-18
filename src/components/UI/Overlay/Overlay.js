@@ -2,9 +2,7 @@ import React from 'react';
 
 const overlay = (props) => {
     return (
-        <div className="overlay">
-
-        </div>
+        <div className={props.show ? 'overlay active' : 'overlay'}></div>
     );
 };
 

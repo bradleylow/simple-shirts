@@ -172,11 +172,16 @@ button:focus {
 .slide-menu {
   position: fixed;
   top: 68px;
-  right: 0;
+  right: -100%;
   width: 80%;
   height: calc(100% - 68px);
   background-color: #fff;
-  z-index: 9998; }
+  z-index: 9998;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
   .slide-menu__nav ul li {
     text-align: right;
     border-bottom: 1px solid #eee; }
@@ -185,6 +190,11 @@ button:focus {
       padding: 20px;
       font-size: 18px;
       font-size: 1.8rem; }
+  .slide-menu.active {
+    right: 0; }
+  @media only screen and (min-width: 992px) {
+    .slide-menu {
+      display: none; } }
 
 .quantity-control__button {
   min-width: 35px;
@@ -259,11 +269,11 @@ header {
     .nav-toggle__bar--bottom {
       bottom: 0;
       left: 0; }
-  .nav-toggle.open__bar {
+  .nav-toggle.active .nav-toggle__bar {
     top: 50%;
     margin-top: -1px;
     background-color: #2789c6; }
-    .nav-toggle.open__bar--bottom {
+    .nav-toggle.active .nav-toggle__bar--bottom {
       opacity: 0; }
 
 html {
@@ -477,7 +487,17 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 9997; }
+  z-index: 9997;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+  .overlay.active {
+    opacity: 1;
+    visibility: visible; }
 
 body,
 input,

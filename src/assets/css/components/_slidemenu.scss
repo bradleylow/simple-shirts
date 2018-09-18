@@ -1,11 +1,12 @@
 .slide-menu {
     position: fixed;
     top: 68px;
-    right: 0;
+    right: -100%;
     width: 80%;
     height: calc(100% - 68px);
     background-color: $color-white;
     z-index: 9998;
+    @include transition-style;
 
     &__nav {
 
@@ -22,5 +23,13 @@
         }//ul
 
     }//&__nav
+
+    &.active {
+        right: 0;
+    }
+
+    @include media((min-width: $media-lg)) {
+        display: none;
+    }
 
 }//.slide-menu

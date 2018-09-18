@@ -2,7 +2,7 @@ import React from 'react';
 
 const slideMenu = (props) => {
     return (
-        <div className="slide-menu">
+        <div className={props.open ? 'slide-menu active' : 'slide-menu'}>
             <nav className="slide-menu__nav">
                 <ul>
                     <li>
