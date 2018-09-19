@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
-import Header from '../../components/Navigation/Header/Header';
+import Header from '../../containers/Header/Header';
 import SlideMenu from '../../components/Navigation/SlideMenu/SlideMenu';
 import Overlay from '../../components/UI/Overlay/Overlay';
 
