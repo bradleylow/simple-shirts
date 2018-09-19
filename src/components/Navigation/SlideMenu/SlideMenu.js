@@ -13,7 +13,7 @@ const slideMenu = (props) => {
                         <NavLink to="/account" exact>Account</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/cart" exact>Cart</NavLink>
+                        <NavLink to="/checkout" exact>Cart</NavLink>
                     </li>
                 </ul>
             </nav>

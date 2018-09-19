@@ -7,11 +7,13 @@ import axios from 'axios';
 
 class Product extends Component {
     state = {
+        userId: null,
         product: {},
         quantity: 1,
         size: '',
         cart: {
-            items: {},
+            userId: 1,
+            items: [],
             totalPrice: null
         }
     }
@@ -22,14 +24,26 @@ class Product extends Component {
     }
 
     loadCart() {
-        axios.get('/cart.json')
-            .then(response => {
-                let cart = response.data;
-
-                if (cart) {
-                    this.setState({ cart: cart });
-                }
+        if (this.state.userId === null) {
+            let localCart = JSON.parse(localStorage.getItem('cart'));
+            this.setState({ cart: localCart }, function() {
+                console.log(this.state.cart);
             });
+        } else {
+            axios.get('/cart.json')
+                .then(response => {
+                    let carts = Object.keys(response.data).map(i => response.data[i]),
+                        userCart;
+
+                    for (let i = 0; i < carts.length; i++) {
+                        if (carts[i].userId == this.state.userId) {
+                            userCart = carts[i];
+                        }
+                    }
+
+                    this.setState({ cart: userCart });
+                });
+        }
     }
 
     loadProduct() {
@@ -90,7 +104,7 @@ class Product extends Component {
         if (this.state.size !== '') {
             this.addToCart();
         } else {
-            // show size error
+            // TODO show size error
         }
     }
 
@@ -108,19 +122,27 @@ class Product extends Component {
 
         this.setState({
             cart: {
+                userId: this.state.userId,
                 items: items,
                 totalPrice: totalPrice
             }
         }, function() {
             let data = {
+                userId: this.state.cart.userId,
                 items: this.state.cart.items,
                 totalPrice: this.state.cart.totalPrice
             }
 
-            axios.post('/cart.json', data)
-                .then(response => {
-                    // this.props.history.push('/')
-                });
+            if (this.state.userId === null) {
+                localStorage.setItem('cart', JSON.stringify(this.state.cart));
+            } else {
+                axios.post('/cart.json', data)
+                    .then(response => {
+                        // this.props.history.push('/checkout')
+                    });
+            }
+
+
         });
     }
 
