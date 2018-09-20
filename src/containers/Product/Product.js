@@ -113,6 +113,7 @@ class Product extends Component {
             totalPrice = 0;
 
         for (let i = 0; i < this.state.quantity; i++) {
+            this.state.product.size = this.state.size;
             items.push(this.state.product);
         }
 
