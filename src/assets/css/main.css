@@ -562,3 +562,14 @@ span {
   @media only screen and (min-width: 992px) {
     .product-page__img-container {
       height: 600px; } }
+
+.product-page .size-selector {
+  position: relative; }
+  .product-page .size-selector__error {
+    position: absolute;
+    bottom: 110%;
+    left: 0; }
+    .product-page .size-selector__error p {
+      color: #c40000;
+      font-size: 16px;
+      font-size: 1.6rem; }

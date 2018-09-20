@@ -9,4 +9,21 @@
         }
     }//&__img-container
 
+    .size-selector {
+        position: relative;
+
+        &__error {
+            position: absolute;
+            bottom: 110%;
+            left: 0;
+
+            p {
+                color: $color-danger;
+                @include font-size(1.6);
+            }//p
+
+        }//&__error
+
+    }//.size-selector
+
 }//.product-page

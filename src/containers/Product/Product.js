@@ -11,6 +11,7 @@ class Product extends Component {
         product: {},
         quantity: 1,
         size: '',
+        sizeError: false,
         cart: {
             userId: 1,
             items: [],
@@ -65,7 +66,10 @@ class Product extends Component {
     sizeSelectorHandler(e) {
         let el = e.target;
 
-        this.setState({ size: el.value });
+        this.setState({
+            size: el.value,
+            sizeError: false
+        });
     }
 
     addQuantityHandler() {
@@ -103,8 +107,9 @@ class Product extends Component {
     maybeAddToCartHandler() {
         if (this.state.size !== '') {
             this.addToCart();
+            this.setState({ sizeError: false });
         } else {
-            // TODO show size error
+            this.setState({ sizeError: true });
         }
     }
 
@@ -156,6 +161,16 @@ class Product extends Component {
             )
         }
 
+        let sizeError = null;
+
+        if (this.state.sizeError) {
+            sizeError = (
+                <div className="size-selector__error">
+                    <p>Please select a size.</p>
+                </div>
+            )
+        }
+
         return (
             <div className="product-page">
                 <div className="product-page__product flex flex-wrap lg:px-6 lg:-mx-12">
@@ -172,6 +187,7 @@ class Product extends Component {
                         </div>
                         <div className="product-page__attributes">
                             <div className="size-selector mb-8 lg:mb-12">
+                                {sizeError}
                                 <form onChange={this.sizeSelectorHandler.bind(this)}>
                                     <RadioButton
                                         classList={'size-selector__button ' + (this.state.size === 'Small' ? 'active' : '')}
