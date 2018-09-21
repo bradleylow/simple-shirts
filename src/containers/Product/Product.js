@@ -27,9 +27,7 @@ class Product extends Component {
     loadCart() {
         if (this.state.userId === null) {
             let localCart = JSON.parse(localStorage.getItem('cart'));
-            this.setState({ cart: localCart }, function() {
-                console.log(this.state.cart);
-            });
+            this.setState({ cart: localCart });
         } else {
             axios.get('/cart.json')
                 .then(response => {
@@ -141,10 +139,11 @@ class Product extends Component {
 
             if (this.state.userId === null) {
                 localStorage.setItem('cart', JSON.stringify(this.state.cart));
+                this.props.history.push('/checkout');
             } else {
                 axios.post('/cart.json', data)
                     .then(response => {
-                        // this.props.history.push('/checkout')
+                        this.props.history.push('/checkout');
                     });
             }
 

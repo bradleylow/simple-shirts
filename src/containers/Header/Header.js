@@ -19,7 +19,7 @@ class Header extends Component {
                         </li>
                         <li>
                             <NavLink to='/account' exact>Account</NavLink>
-
+                            
                         </li>
                         <li>
                             <NavLink to='/checkout' exact>Cart</NavLink>

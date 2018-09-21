@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 import Shop from './containers/Shop/Shop';
 import Product from './containers/Product/Product';
+import Checkout from './containers/Checkout/Checkout';
 
 class App extends Component {
 
@@ -12,6 +13,7 @@ class App extends Component {
             <Layout>
                 <Switch>
                     <Route path="/product/:id" component={Product} />
+                    <Route path="/checkout" component={Checkout} />
                     <Route path="/" exact component={Shop} />
                 </Switch>
             </Layout>
