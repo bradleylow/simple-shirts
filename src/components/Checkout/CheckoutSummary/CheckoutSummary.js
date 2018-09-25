@@ -9,10 +9,6 @@ const checkoutSummary = (props) => {
                     <label>Subtotal:</label>
                     <span>${props.cart.totalPrice}</span>
                 </div>
-                <div className="summary-table__row summary-table__shipping flex justify-between items-center">
-                    <label>Shipping:</label>
-                    <span>Free</span>
-                </div>
             </div>
             <div className="summary-table__actions mt-8">
                 <button className="button button--blue w-full">Place Order</button>
