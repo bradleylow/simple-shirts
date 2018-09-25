@@ -27,28 +27,6 @@ class Checkout extends Component {
         }
 
     }
-    //
-    // filterUniqueItems(cart) {
-    //     let items = cart.items;
-    //
-    //     let uniqueItems = [];
-    //
-    //     items.forEach(function(item) {
-    //
-    //         uniqueItems.forEach(function(uniqueItem) {
-    //             if () {
-    //                 console.log(item);
-    //                 return false;
-    //             } else {
-    //                 uniqueItems.push(item);
-    //             }
-    //         });
-    //
-    //     });
-    //
-    //     console.log(uniqueItems);
-    //
-    // }
 
     render () {
         let cart = (
