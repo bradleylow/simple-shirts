@@ -6,7 +6,7 @@ const checkoutItems = (props) => {
     let items = props.cart.items;
 
     return (
-        <div className="checkout__items lg:w-2/3">
+        <div className="checkout__items w-full lg:w-2/3">
             {
                 items.map( (item, i) => (
                     <CheckoutItem key={i} item={item} />
