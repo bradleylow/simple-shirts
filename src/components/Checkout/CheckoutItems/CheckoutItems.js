@@ -7,9 +7,11 @@ const checkoutItems = (props) => {
 
     return (
         <div className="checkout__items lg:w-2/3">
-            {items.map( (item, i) => (
-                <CheckoutItem key={i} item={item} />
-            ))}
+            {
+                items.map( (item, i) => (
+                    <CheckoutItem key={i} item={item} />
+                ))
+            }
         </div>
     );
 };

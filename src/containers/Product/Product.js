@@ -26,8 +26,12 @@ class Product extends Component {
 
     loadCart() {
         if (this.state.userId === null) {
-            let localCart = JSON.parse(localStorage.getItem('cart'));
-            this.setState({ cart: localCart });
+
+            if (localStorage.getItem('cart')) {
+                let localCart = JSON.parse(localStorage.getItem('cart'));
+                this.setState({ cart: localCart });
+            }
+
         } else {
             axios.get('/cart.json')
                 .then(response => {
@@ -112,17 +116,22 @@ class Product extends Component {
     }
 
     addToCart(cart) {
-        let items = [],
-            totalPrice = 0;
+        let items = this.state.cart.items,
+            product = this.state.product;
 
-        for (let i = 0; i < this.state.quantity; i++) {
-            this.state.product.size = this.state.size;
-            items.push(this.state.product);
+        product.size = this.state.size;
+        product.quantity = this.state.quantity;
+
+        let foundIndex = items.findIndex(item => item.id === this.state.product.id && item.size === this.state.size);
+
+        if (foundIndex !== -1) {
+            items[foundIndex].quantity = items[foundIndex].quantity + this.state.quantity;
+        } else {
+            items.push(product);
         }
 
-        for (let i = 0; i < items.length; i++) {
-            totalPrice = totalPrice + items[i].price;
-        }
+        let productTotalPrice = product.price * product.quantity;
+        let totalPrice = this.state.cart.totalPrice + productTotalPrice;
 
         this.setState({
             cart: {
