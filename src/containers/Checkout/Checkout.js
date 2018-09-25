@@ -22,7 +22,7 @@ class Checkout extends Component {
             cart = JSON.parse(localStorage.getItem('cart'));
 
             this.setState({ cart: cart }, function() {
-                // this.filterUniqueItems(this.state.cart);
+                console.log(this.state.cart);
             });
         }
 
@@ -38,7 +38,7 @@ class Checkout extends Component {
 
         if (this.state.cart !== null) {
             cart = (
-                <div className="checkout__cart-container flex">
+                <div className="checkout__cart-container lg:flex lg:justify-between">
                     <CheckoutItems cart={this.state.cart} />
                     <CheckoutSummary cart={this.state.cart} />
                 </div>
