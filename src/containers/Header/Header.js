@@ -18,8 +18,7 @@ class Header extends Component {
                             <NavLink to='/' exact>Shop</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/account' exact>Account</NavLink>
-                            
+                            <NavLink to='/login' exact>Login</NavLink>
                         </li>
                         <li>
                             <NavLink to='/checkout' exact>Cart</NavLink>

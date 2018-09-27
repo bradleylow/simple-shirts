@@ -48,6 +48,28 @@ button:focus {
       border-color: #c40000;
       color: #c40000; }
 
+form .form__row {
+  margin-bottom: 30px; }
+  form .form__row:last-of-type {
+    margin-bottom: 0; }
+
+form .form__label {
+  display: block;
+  padding-left: 20px;
+  margin-bottom: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-weight: 500; }
+
+form .form__input {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-size: 1.8rem; }
+  form .form__input::placeholder {
+    color: #9aacbf; }
+
 .size-selector__button {
   display: inline-block;
   min-width: 62px;
@@ -686,6 +708,12 @@ span {
       @media only screen and (min-width: 1024px), (hover: hover) {
         .checkout__item .item-attr .remove-item:hover {
           opacity: 0.5; } }
+
+.login__wrapper {
+  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f7f7f7; }
 
 .product-page__img-container {
   position: relative;

@@ -1,0 +1,28 @@
+form {
+
+    .form__row {
+        margin-bottom: 30px;
+
+        &:last-of-type { margin-bottom: 0; }
+    }//.form-row
+
+    .form__label {
+        display: block;
+        padding-left: 20px;
+        margin-bottom: 5px;
+        font-family: $font-main;
+        @include font-size(1.6);
+        font-weight: 500;
+    }//.form__label
+
+    .form__input {
+        width: 100%;
+        padding: 10px 20px;
+        @include font-size(1.8);
+
+        &::placeholder {
+            color: $color-slate;
+        }
+    }//.form__input
+
+}//form
