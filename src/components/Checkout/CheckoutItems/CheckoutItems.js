@@ -16,6 +16,7 @@ const checkoutItems = (props) => {
                         addQuantity={() => props.addQuantity(i)}
                         removeQuantity={() => props.removeQuantity(i)}
                         blur={props.blur}
+                        removeItem={() => props.removeItem(i)}
                     />
                 ))
             }

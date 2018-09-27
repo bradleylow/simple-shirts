@@ -53,6 +53,13 @@ class Checkout extends Component {
         }
     }
 
+    removeItemHandler (index) {
+        let cart = this.state.cart;
+
+        cart.items.splice(index, 1);
+        this.updateCart(cart);
+    }
+
     updateCart (cart) {
         this.setState({ cart: cart }, function() {
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -119,6 +126,7 @@ class Checkout extends Component {
                         updateQuantity={this.quantityUpdateHandler.bind(this)}
                         removeQuantity={this.removeQuantityHandler.bind(this)}
                         addQuantity={this.addQuantityHandler.bind(this)}
+                        removeItem={this.removeItemHandler.bind(this)}
                     />
                     <CheckoutSummary cart={this.state.cart} placeOrder={this.placeOrderHandler.bind(this)} />
                 </div>

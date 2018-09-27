@@ -37,7 +37,7 @@ const checkoutItem = (props) => {
                         <h5>${itemTotalPrice.toFixed(2)}</h5>
                     </div>
                     <div className="item-attr__actions self-end">
-                        <span className="remove-item">Remove</span>
+                        <span className="remove-item" onClick={props.removeItem}>Remove</span>
                     </div>
                 </div>
             </div>
