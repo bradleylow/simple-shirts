@@ -52,17 +52,22 @@
                 margin-bottom: 0;
             }
 
+            h5 {
+                padding-top: 4px;
+                @include font-size(1.6);
+            }
+
             &.item-attr__size{
-                width: 75%
+                width: 60%
             }
 
             &.item-attr__quantity{
-                width: 25%;
+                width: 40%;
             }
 
             @include media((min-width: $media-lg)) {
                 width: auto !important;
-                min-width: 65px;
+                min-width: 55px;
                 margin-right: 30px;
                 margin-bottom: 0;
 

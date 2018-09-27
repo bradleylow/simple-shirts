@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const checkoutSummary = (props) => {
     return (
@@ -7,11 +8,19 @@ const checkoutSummary = (props) => {
             <div className="summary-table">
                 <div className="summary-table__row summary-table__price flex justify-between items-center">
                     <label>Subtotal:</label>
-                    <span>${props.cart.totalPrice}</span>
+                    <span>${props.cart.totalPrice.toFixed(2)}</span>
                 </div>
             </div>
             <div className="summary-table__actions mt-8">
-                <button className="button button--blue w-full">Place Order</button>
+                <button
+                    className="button button--blue w-full"
+                    onClick={props.placeOrder}>
+                    Place Order
+                </button>
+                <NavLink className="button button--stroke button--slate mt-8 w-full" to='/' exact>
+                    Continue Shopping
+                </NavLink>
+
             </div>
         </div>
     );

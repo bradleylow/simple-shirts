@@ -13,15 +13,9 @@ button{
     color: $color-black;
     @include transition-style;
 
-    &.button--blue {
-        background-color: $color-blue;
-        color: $color-white;
-    }//&.button--blue
-
-    &.button--danger {
-        background-color: $color-danger;
-        color: $color-white;
-    }//&.button--danger
+    @include hover {
+        opacity: 0.7;
+    }
 
     &--small {
         min-width: 75px;
@@ -29,8 +23,41 @@ button{
         padding: 5px 10px;
     }
 
-    @include hover {
-        opacity: 0.7;
+    &--blue {
+        background-color: $color-blue;
+        color: $color-white;
+    }//&.button--blue
+
+    &--slate {
+        background-color: $color-slate;
+        color: $color-white;
+    }//&.button--blue
+
+    &--danger {
+        background-color: $color-danger;
+        color: $color-white;
+    }//&.button--danger
+
+    &--stroke {
+        padding: 7px 17px;
+        background-color: transparent !important;
+        border-width: 3px;
+        border-style: solid;
+
+        &.button--blue {
+            border-color: $color-blue;
+            color: $color-blue;
+        }//&.button--blue
+
+        &.button--slate {
+            border-color: $color-slate;
+            color: $color-slate;
+        }//&.button--blue
+
+        &.button--danger {
+            border-color: $color-danger;
+            color: $color-danger;
+        }//&.button--danger
     }
 
 }//.button

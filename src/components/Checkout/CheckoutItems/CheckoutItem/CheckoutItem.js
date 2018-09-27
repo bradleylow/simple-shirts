@@ -1,5 +1,7 @@
 import React from 'react';
 
+import QuantityField from '../../../UI/FormElements/QuantityField/QuantityField';
+
 const checkoutItem = (props) => {
     let itemTotalPrice = props.item.price * props.item.quantity;
 
@@ -21,7 +23,14 @@ const checkoutItem = (props) => {
                     </div>
                     <div className="item-attr__quantity">
                         <label className="item-attr__label">Qty</label>
-                        <h5>{props.item.quantity}</h5>
+                        {/* <h5 onClick={props.updateQuantity}>{props.item.quantity}</h5> */}
+                        <QuantityField
+                            value={props.item.quantity}
+                            removeQuantity={props.removeQuantity}
+                            addQuantity={props.addQuantity}
+                            change={props.updateQuantity}
+                            blur={props.blur}
+                        />
                     </div>
                     <div className="item-attr__totalPrice">
                         <label className="item-attr__label">Total</label>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RadioButton from '../../components/UI/FormElements/RadioButton/RadioButton';
+import QuantityField from '../../components/UI/FormElements/QuantityField/QuantityField';
 import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
@@ -104,7 +105,7 @@ class Product extends Component {
         if (el.value === '') {
             this.setState({ quantity: 1 })
         }
-    }
+    }x
 
     maybeAddToCartHandler() {
         if (this.state.size !== '') {
@@ -223,24 +224,13 @@ class Product extends Component {
                                     />
                                 </form>
                             </div>
-                            <div className="quantity-control mb-8 lg:mb-12">
-                                <div className="quantity-control__widget flex">
-                                    <button
-                                        className="quantity-control__button"
-                                        onClick={this.removeQuantityHandler.bind(this)}>-</button>
-                                    <input
-                                        id="quantity-control__counter"
-                                        className="quantity-control__counter"
-                                        type="text"
-                                        name="quantity"
-                                        value={isNaN(this.state.quantity) ? '' : this.state.quantity}
-                                        onChange={this.updateQuantityHandler.bind(this)}
-                                        onBlur={this.quantityBlurHandler.bind(this)}/>
-                                    <button
-                                        className="quantity-control__button"
-                                        onClick={this.addQuantityHandler.bind(this)}>+</button>
-                                </div>
-                            </div>
+                            <QuantityField
+                                value={isNaN(this.state.quantity) ? '' : this.state.quantity}
+                                removeQuantity={this.removeQuantityHandler.bind(this)}
+                                addQuantity={this.addQuantityHandler.bind(this)}
+                                change={this.updateQuantityHandler.bind(this)}
+                                blur={this.quantityBlurHandler.bind(this)}
+                            />
                             <div className="product-actions">
                                 <button className="product-actions__button button button--blue add-to-cart w-full" onClick={this.maybeAddToCartHandler.bind(this)}>Add to Cart</button>
                             </div>

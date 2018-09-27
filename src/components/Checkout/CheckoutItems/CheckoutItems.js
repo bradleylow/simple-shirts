@@ -9,7 +9,14 @@ const checkoutItems = (props) => {
         <div className="checkout__items w-full lg:w-2/3">
             {
                 items.map( (item, i) => (
-                    <CheckoutItem key={i} item={item} />
+                    <CheckoutItem
+                        key={i}
+                        item={item}
+                        updateQuantity={props.updateQuantity}
+                        addQuantity={() => props.addQuantity(i)}
+                        removeQuantity={() => props.removeQuantity(i)}
+                        blur={props.blur}
+                    />
                 ))
             }
         </div>
