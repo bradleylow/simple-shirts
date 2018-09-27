@@ -12,10 +12,10 @@ const checkoutItems = (props) => {
                     <CheckoutItem
                         key={i}
                         item={item}
-                        updateQuantity={props.updateQuantity}
+                        updateQuantity={(e) => props.updateQuantity(i, e)}
                         addQuantity={() => props.addQuantity(i)}
                         removeQuantity={() => props.removeQuantity(i)}
-                        blur={props.blur}
+                        blur={(e) => props.blur(i, e)}
                         removeItem={() => props.removeItem(i)}
                     />
                 ))

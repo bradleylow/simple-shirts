@@ -27,12 +27,30 @@ class Checkout extends Component {
 
     }
 
-    quantityUpdateHandler (e) {
-        console.log('update quantity');
+    quantityUpdateHandler (index, e) {
+        let cart = this.state.cart,
+            el = e.target,
+            quantity = el.value;
+
+        if (quantity >= 25) {
+            quantity = 25;
+        } else if (quantity < 1) {
+            quantity = '';
+        }
+
+        cart.items[index].quantity = quantity;
+        this.updateCart(cart);
+
     }
 
-    quantityBlurHandler (e) {
-        console.log('blur quantity');
+    quantityBlurHandler (index, e) {
+        let cart = this.state.cart,
+            el = e.target;
+
+        if (el.value === '') {
+            cart.items[index].quantity = 1;
+            this.updateCart(cart);
+        }
     }
 
     removeQuantityHandler (index) {
@@ -82,7 +100,6 @@ class Checkout extends Component {
     }
 
     placeOrderHandler () {
-        console.log('place order');
         let cart = this.state.cart,
             orders = [];
 

@@ -19,32 +19,32 @@ button:focus {
   @media only screen and (min-width: 1024px), (hover: hover) {
     .button:hover {
       opacity: 0.7; } }
-  .button--small {
+  .button.button--small {
     min-width: 75px;
     font-size: 14px;
     font-size: 1.4rem;
     padding: 5px 10px; }
-  .button--blue {
+  .button.button--blue {
     background-color: #2789c6;
     color: #fff; }
-  .button--slate {
+  .button.button--slate {
     background-color: #9aacbf;
     color: #fff; }
-  .button--danger {
+  .button.button--danger {
     background-color: #c40000;
     color: #fff; }
-  .button--stroke {
+  .button.button--stroke {
     padding: 7px 17px;
     background-color: transparent !important;
     border-width: 3px;
     border-style: solid; }
-    .button--stroke.button--blue {
+    .button.button--stroke.button--blue {
       border-color: #2789c6;
       color: #2789c6; }
-    .button--stroke.button--slate {
+    .button.button--stroke.button--slate {
       border-color: #9aacbf;
       color: #9aacbf; }
-    .button--stroke.button--danger {
+    .button.button--stroke.button--danger {
       border-color: #c40000;
       color: #c40000; }
 
