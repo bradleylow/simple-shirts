@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import CheckoutItems from '../../components/Checkout/CheckoutItems/CheckoutItems';
 import CheckoutSummary from '../../components/Checkout/CheckoutSummary/CheckoutSummary';
+
+import * as actions from '../../store/actions/index';
 
 
 class Checkout extends Component {
@@ -113,11 +116,18 @@ class Checkout extends Component {
             cart: cart
         }
 
-        this.setState({ order: order }, function() {
-            orders.push(this.state.order);
-            localStorage.setItem('orders', JSON.stringify(orders));
-            this.clearCart();
-        });
+        if (this.props.isAuth) {
+            this.setState({ order: order }, function() {
+                orders.push(this.state.order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                this.clearCart();
+            });
+        } else {
+            this.props.onSetAuthRedirectPath('/checkout');
+            this.props.history.push('/login');
+        }
+
+
     }
 
     clearCart () {
@@ -145,7 +155,11 @@ class Checkout extends Component {
                         addQuantity={this.addQuantityHandler}
                         removeItem={this.removeItemHandler}
                     />
-                    <CheckoutSummary cart={this.state.cart} placeOrder={this.placeOrderHandler} />
+                    <CheckoutSummary
+                        cart={this.state.cart}
+                        placeOrder={this.placeOrderHandler}
+                        isAuth={this.props.isAuth}
+                    />
                 </div>
             )
         }
@@ -158,4 +172,16 @@ class Checkout extends Component {
     }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token != null
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -15,7 +15,7 @@ const checkoutSummary = (props) => {
                 <button
                     className="button button--blue w-full"
                     onClick={props.placeOrder}>
-                    Place Order
+                    {props.isAuth ? 'Place Order' : 'Sign in to Order'}
                 </button>
                 <NavLink className="button button--stroke button--slate mt-8 w-full" to='/' exact>
                     Continue Shopping
