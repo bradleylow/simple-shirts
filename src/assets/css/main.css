@@ -710,10 +710,24 @@ span {
           opacity: 0.5; } }
 
 .login__wrapper {
-  width: 500px;
+  position: relative;
+  width: 100%;
+  min-height: 350px;
   margin: 0 auto;
   padding: 30px;
   background-color: #f7f7f7; }
+  @media only screen and (min-width: 992px) {
+    .login__wrapper {
+      width: 500px; } }
+  .login__wrapper .error-message {
+    padding: 7px;
+    background-color: #ffeded;
+    margin-bottom: 30px; }
+    .login__wrapper .error-message p {
+      color: #c40000;
+      font-size: 14px;
+      font-size: 1.4rem;
+      text-align: center; }
 
 .auth-state p {
   font-size: 14px;

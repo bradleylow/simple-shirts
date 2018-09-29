@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../../components/UI/FormElements/Input/Input';
+import Loader from '../../components/UI/Loader/Loader';
 import * as actions from '../../store/actions/index';
 
 class Auth extends Component {
@@ -124,50 +125,86 @@ class Auth extends Component {
         }
 
         let form = (
-            <form className="form" onSubmit={this.submitHandler}>
-                {formElementsArray.map(formElement => (
-                    <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        label={formElement.config.label}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={(e) => this.inputChangedHandler(e, formElement.id)} />
-                ))}
-                <div className="form__row text-center">
-                    <button type="submit" className="button button--blue">
-                        {this.state.isLogin === true ? 'Login' : 'Sign Up'}
-                    </button>
+            <div className="form__wrapper">
+                <form className="form" onSubmit={this.submitHandler}>
+                    {formElementsArray.map(formElement => (
+                        <Input
+                            key={formElement.id}
+                            elementType={formElement.config.elementType}
+                            elementConfig={formElement.config.elementConfig}
+                            label={formElement.config.label}
+                            value={formElement.config.value}
+                            invalid={!formElement.config.valid}
+                            shouldValidate={formElement.config.validation}
+                            touched={formElement.config.touched}
+                            changed={(e) => this.inputChangedHandler(e, formElement.id)} />
+                    ))}
+                    <div className="form__row text-center">
+                        <button type="submit" className="button button--blue">
+                            {this.state.isLogin === true ? 'Login' : 'Sign Up'}
+                        </button>
+                    </div>
+                </form>
+                <div className="auth-state text-center mt-12">
+                    <p className="mb-2">
+                        {this.state.isLogin === true ? 'Don\'t have an account?' : 'Already have an account?'}
+                    </p>
+                    <span onClick={this.switchAuthStateHandler}>
+                        {this.state.isLogin === true ? 'Create an Account' : 'Login into Account'}
+                    </span>
                 </div>
-            </form>
+            </div>
         );
 
-        let authState = (
-            <div className="auth-state">
-                <p className="mb-2">
-                    {this.state.isLogin === true ? 'Don\'t have an account?' : 'Already have an account?'}
-                </p>
-                <span onClick={this.switchAuthStateHandler}>
-                    {this.state.isLogin === true ? 'Create an Account' : 'Login into Account'}
-                </span>
-            </div>
-        )
+        if (this.props.loading) {
+            form = <Loader type="inject" />
+        }
+
+        let errorMessage = null;
+
+        if (this.props.error) {
+            let message = this.props.error.message;
+
+            switch (message) {
+                case 'EMAIL_EXISTS':
+                    message = 'Email is already in use';
+                    break;
+                case 'INVALID_EMAIL':
+                    message = 'Email is invalid';
+                    break;
+                case 'MISSING_PASSWORD':
+                    message = 'Password is missing';
+                    break;
+                case 'EMAIL_NOT_FOUND':
+                case 'INVALID_PASSWORD':
+                    message = 'Incorrect email or password';
+                    break;
+            }
+
+            errorMessage = (
+                <div className="error-message">
+                    <p>{message}</p>
+                </div>
+            )
+        }
 
         return (
             <div className="login">
                 <div className="login__wrapper">
+                    {errorMessage}
                     {form}
-                    <div className="button-wrapper text-center mt-12">
-                        {authState}
-                    </div>
                 </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    }
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -175,4 +212,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
