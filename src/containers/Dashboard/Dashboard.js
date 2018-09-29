@@ -12,16 +12,8 @@ class Dashboard extends Component {
     }
 
     render () {
-
-        let authRedirect = null;
-
-        if (!this.props.isAuth) {
-            authRedirect = <Redirect to='/login'/>
-        }
-
         return (
             <div className="dashboard">
-                {authRedirect}
                 <h5>Logged in as {this.props.userEmail}</h5>
                 <div className="button__wrapper mt-12 text-center lg:text-left">
                     <button className="button button--small button--danger" onClick={this.logoutHandler}>Logout</button>
@@ -33,7 +25,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null,
         userEmail: state.auth.email
     };
 }
