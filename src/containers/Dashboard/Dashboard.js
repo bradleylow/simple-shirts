@@ -33,8 +33,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        userEmail: state.auth.email,
-        isAuth: state.auth.token !== null
+        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null,
+        userEmail: state.auth.email
     };
 }
 
