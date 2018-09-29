@@ -27,7 +27,7 @@ class Checkout extends Component {
 
     }
 
-    quantityUpdateHandler (index, e) {
+    quantityUpdateHandler = (index, e) => {
         let cart = this.state.cart,
             el = e.target,
             quantity = el.value;
@@ -43,7 +43,7 @@ class Checkout extends Component {
 
     }
 
-    quantityBlurHandler (index, e) {
+    quantityBlurHandler = (index, e) => {
         let cart = this.state.cart,
             el = e.target;
 
@@ -53,7 +53,7 @@ class Checkout extends Component {
         }
     }
 
-    removeQuantityHandler (index) {
+    removeQuantityHandler = (index) => {
         let cart = this.state.cart;
 
         if (cart.items[index].quantity > 1) {
@@ -62,7 +62,7 @@ class Checkout extends Component {
         }
     }
 
-    addQuantityHandler (index) {
+    addQuantityHandler = (index) => {
         let cart = this.state.cart;
 
         if (cart.items[index].quantity < 25) {
@@ -71,14 +71,14 @@ class Checkout extends Component {
         }
     }
 
-    removeItemHandler (index) {
+    removeItemHandler = (index) => {
         let cart = this.state.cart;
 
         cart.items.splice(index, 1);
         this.updateCart(cart);
     }
 
-    updateCart (cart) {
+    updateCart = (cart) => {
         this.setState({ cart: cart }, function() {
             localStorage.setItem('cart', JSON.stringify(cart));
         });
@@ -99,7 +99,7 @@ class Checkout extends Component {
         this.setState({ cart: cart });
     }
 
-    placeOrderHandler () {
+    placeOrderHandler = () => {
         let cart = this.state.cart,
             orders = [];
 
@@ -139,13 +139,13 @@ class Checkout extends Component {
                 <div className="checkout__cart-container lg:flex lg:justify-between">
                     <CheckoutItems
                         cart={this.state.cart}
-                        blur={this.quantityBlurHandler.bind(this)}
-                        updateQuantity={this.quantityUpdateHandler.bind(this)}
-                        removeQuantity={this.removeQuantityHandler.bind(this)}
-                        addQuantity={this.addQuantityHandler.bind(this)}
-                        removeItem={this.removeItemHandler.bind(this)}
+                        blur={this.quantityBlurHandler}
+                        updateQuantity={this.quantityUpdateHandler}
+                        removeQuantity={this.removeQuantityHandler}
+                        addQuantity={this.addQuantityHandler}
+                        removeItem={this.removeItemHandler}
                     />
-                    <CheckoutSummary cart={this.state.cart} placeOrder={this.placeOrderHandler.bind(this)} />
+                    <CheckoutSummary cart={this.state.cart} placeOrder={this.placeOrderHandler} />
                 </div>
             )
         }
