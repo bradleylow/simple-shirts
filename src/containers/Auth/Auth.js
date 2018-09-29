@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Input from '../../components/UI/FormElements/Input/Input';
 import Loader from '../../components/UI/Loader/Loader';
@@ -45,7 +46,7 @@ class Auth extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
-        
+
         if (!rules) {
             return true;
         }
@@ -171,8 +172,15 @@ class Auth extends Component {
             )
         }
 
+        let authRedirect = null;
+
+        if (this.props.isAuth) {
+            authRedirect = <Redirect to="/"/>
+        }
+
         return (
             <div className="login">
+                {authRedirect}
                 <div className="login__wrapper">
                     {errorMessage}
                     {form}
@@ -185,7 +193,8 @@ class Auth extends Component {
 const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuth: state.auth.token !== null
     }
 };
 
