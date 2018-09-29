@@ -15,6 +15,7 @@ class Auth extends Component {
                 elementConfig: {
                     type: 'email',
                     placeholder: 'Email',
+                    autoFocus: true
                 },
                 value: '',
                 validation: {
