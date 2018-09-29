@@ -45,6 +45,7 @@ class Auth extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
+        
         if (!rules) {
             return true;
         }
@@ -70,26 +71,6 @@ class Auth extends Component {
     }
 
     inputChangedHandler (e, inputName) {
-        // const updatedLoginForm = {
-        //     ...this.state.loginForm
-        // };
-        //
-        // const updatedFormElement = {
-        //     ...updatedLoginForm[inputIdentifier]
-        // };
-        //
-        // updatedFormElement.value = e.target.value;
-        // updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        // updatedFormElement.touched = true;
-        // updatedLoginForm[inputIdentifier] = updatedFormElement;
-        //
-        // let formIsValid = true;
-        //
-        // for (let inputIdentifier in updatedLoginForm) {
-        //     formIsValid = updatedLoginForm[inputIdentifier].valid && formIsValid;
-        // }
-        // this.setState({loginForm: updatedLoginForm, formIsValid: formIsValid});
-
         const updatedLoginForm = {
             ...this.state.loginForm,
             [inputName]: {
@@ -179,6 +160,8 @@ class Auth extends Component {
                 case 'INVALID_PASSWORD':
                     message = 'Incorrect email or password';
                     break;
+                default:
+                    return message;
             }
 
             errorMessage = (
