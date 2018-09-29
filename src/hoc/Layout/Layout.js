@@ -26,10 +26,11 @@ class Layout extends Component {
         return (
             <Aux>
                 <Header
-                    collapse={this.state.showSlideMenu} slideToggleClicked={this.slideMenuToggleHandler}
+                    collapse={this.state.showSlideMenu}
+                    slideToggleClicked={this.slideMenuToggleHandler}
                     isAuth={this.props.isAuth}
                 />
-                <Overlay show={this.state.showSlideMenu} />
+                <Overlay show={this.state.showSlideMenu} clicked={this.slideMenuClosedHandler} />
                 <SlideMenu
                     open={this.state.showSlideMenu}
                     closed={this.slideMenuClosedHandler}

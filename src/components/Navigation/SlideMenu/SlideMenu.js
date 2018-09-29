@@ -5,13 +5,14 @@ const slideMenu = (props) => {
     return (
         <div className={props.open ? 'slide-menu active' : 'slide-menu'}>
             <nav className="slide-menu__nav">
-                <ul>
+                <ul onClick={props.closed}>
                     <li>
                         <NavLink to="/" exact>Shop</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/account" exact>Account</NavLink>
-                    </li>
+                    { !props.isAuth
+                        ? <li><NavLink to='/login' exact>Login</NavLink></li>
+                        : <li><NavLink to='/dashboard' exact>Dashboard</NavLink></li>
+                    }
                     <li>
                         <NavLink to="/checkout" exact>Cart</NavLink>
                     </li>
