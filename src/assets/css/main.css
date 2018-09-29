@@ -715,6 +715,18 @@ span {
   padding: 30px;
   background-color: #f7f7f7; }
 
+.auth-state p {
+  font-size: 14px;
+  font-size: 1.4rem; }
+
+.auth-state span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-size: 1.4rem;
+  color: #c40000;
+  text-decoration: underline;
+  cursor: pointer; }
+
 .product-page__img-container {
   position: relative;
   height: 400px; }

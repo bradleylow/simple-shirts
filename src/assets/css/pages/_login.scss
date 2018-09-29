@@ -4,3 +4,17 @@
     padding: 30px;
     background-color: $color-lighter-gray;
 }//.login_wrapper
+
+.auth-state {
+
+    p { @include font-size(1.4); }
+
+    span {
+        font-family: $font-main;
+        @include font-size(1.4);
+        color: $color-danger;
+        text-decoration: underline;
+        cursor: pointer;
+    }//span
+
+}//.auth-state

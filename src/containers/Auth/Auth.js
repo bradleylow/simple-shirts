@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Input from '../../components/UI/FormElements/Input/Input';
+import * as actions from '../../store/actions/index';
 
 class Auth extends Component {
     state = {
@@ -10,7 +12,7 @@ class Auth extends Component {
                 label: 'Email',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Email'
+                    placeholder: 'Email',
                 },
                 value: '',
                 validation: {
@@ -25,7 +27,7 @@ class Auth extends Component {
                 label: 'Password',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: 'Password',
                 },
                 value: '',
                 validation: {
@@ -36,7 +38,8 @@ class Auth extends Component {
                 touched: false
             }
         },
-        formIsValid: false
+        formIsValid: false,
+        isLogin: true
     }
 
     checkValidity(value, rules) {
@@ -86,8 +89,6 @@ class Auth extends Component {
         // }
         // this.setState({loginForm: updatedLoginForm, formIsValid: formIsValid});
 
-        console.log(this.state.loginForm[inputName].validation);
-
         const updatedLoginForm = {
             ...this.state.loginForm,
             [inputName]: {
@@ -101,8 +102,15 @@ class Auth extends Component {
         this.setState({ loginForm: updatedLoginForm})
     }
 
-    loginHandler (e) {
+    submitHandler = (e) => {
         e.preventDefault();
+        this.props.onAuth(this.state.loginForm.email.value, this.state.loginForm.password.value, this.state.isLogin);
+    }
+
+    switchAuthStateHandler = () => {
+        this.setState(prevState => {
+            return {isLogin: !prevState.isLogin}
+        });
     }
 
     render () {
@@ -116,7 +124,7 @@ class Auth extends Component {
         }
 
         let form = (
-            <form className="form" onSubmit={this.loginHandler}>
+            <form className="form" onSubmit={this.submitHandler}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
@@ -130,19 +138,41 @@ class Auth extends Component {
                         changed={(e) => this.inputChangedHandler(e, formElement.id)} />
                 ))}
                 <div className="form__row text-center">
-                    <button type="submit" className="button button--blue">Login</button>
+                    <button type="submit" className="button button--blue">
+                        {this.state.isLogin === true ? 'Login' : 'Sign Up'}
+                    </button>
                 </div>
             </form>
         );
+
+        let authState = (
+            <div className="auth-state">
+                <p className="mb-2">
+                    {this.state.isLogin === true ? 'Don\'t have an account?' : 'Already have an account?'}
+                </p>
+                <span onClick={this.switchAuthStateHandler}>
+                    {this.state.isLogin === true ? 'Create an Account' : 'Login into Account'}
+                </span>
+            </div>
+        )
 
         return (
             <div className="login">
                 <div className="login__wrapper">
                     {form}
+                    <div className="button-wrapper text-center mt-12">
+                        {authState}
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password, isLogin) => dispatch(actions.auth(email, password, isLogin))
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
