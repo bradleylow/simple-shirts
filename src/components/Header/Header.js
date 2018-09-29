@@ -17,7 +17,8 @@ const header = (props) =>  {
                     </li>
                     { !props.isAuth
                         ? <li><NavLink to='/login' exact>Login</NavLink></li>
-                        : <li><NavLink to='/dashboard' exact>Dashboard</NavLink></li> }
+                        : <li><NavLink to='/dashboard' exact>Dashboard</NavLink></li>
+                    }
                     <li>
                         <NavLink to='/checkout' exact>Cart</NavLink>
                     </li>

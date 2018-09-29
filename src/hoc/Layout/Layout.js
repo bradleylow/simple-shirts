@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Aux from '../../hoc/Aux/Aux';
-import Header from '../../containers/Header/Header';
+import Header from '../../components/Header/Header';
 import SlideMenu from '../../components/Navigation/SlideMenu/SlideMenu';
 import Overlay from '../../components/UI/Overlay/Overlay';
 
@@ -24,11 +25,16 @@ class Layout extends Component {
     render () {
         return (
             <Aux>
-                <Header collapse={this.state.showSlideMenu} slideToggleClicked={this.slideMenuToggleHandler} />
+                <Header
+                    collapse={this.state.showSlideMenu} slideToggleClicked={this.slideMenuToggleHandler}
+                    isAuth={this.props.isAuth}
+                />
                 <Overlay show={this.state.showSlideMenu} />
                 <SlideMenu
                     open={this.state.showSlideMenu}
-                    closed={this.slideMenuClosedHandler} />
+                    closed={this.slideMenuClosedHandler}
+                    isAuth={this.props.isAuth}
+                />
                 <main className="container mx-auto lg:mt-24">
                     {this.props.children}
                 </main>
@@ -37,4 +43,10 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null
+    };
+}
+
+export default connect(mapStateToProps)(Layout);
