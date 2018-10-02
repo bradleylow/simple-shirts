@@ -21,17 +21,6 @@ class Checkout extends Component {
 
     }
 
-    // loadCart() {
-    //     let cart;
-    //
-    //     if (localStorage.getItem('cart') && localStorage.getItem('cart') !== null) {
-    //         cart = JSON.parse(localStorage.getItem('cart'));
-    //
-    //         this.setState({ cart: cart });
-    //     }
-    //
-    // }
-
     quantityUpdateHandler = (index, e) => {
         let cart = this.state.cart,
             el = e.target,
@@ -104,31 +93,14 @@ class Checkout extends Component {
     }
 
     placeOrderHandler = () => {
-        // let cart = this.state.cart,
-        //     orders = [];
-        //
-        // if (localStorage.getItem('orders')) {
-        //     orders = JSON.parse(localStorage.getItem('orders'));
-        // }
-        //
-        // let order = {
-        //     orderId: 100001,
-        //     datePlaced: new Date(),
-        //     cart: cart
-        // }
-        //
-        // if (this.props.isAuth) {
-        //     this.setState({ order: order }, function() {
-        //         orders.push(this.state.order);
-        //         localStorage.setItem('orders', JSON.stringify(orders));
-        //         this.clearCart();
-        //     });
-        // } else {
-        //     this.props.onSetAuthRedirectPath('/checkout');
-        //     this.props.history.push('/login');
-        // }
-        //
+        let cart = this.state.cart;
 
+        if (this.props.isAuth) {
+            this.props.emptyCart(this.props.userId);
+        } else {
+            this.props.onSetAuthRedirectPath('/checkout');
+            this.props.history.push('/login');
+        }
     }
 
     clearCart () {
@@ -176,6 +148,7 @@ class Checkout extends Component {
 const mapStateToProps = state => {
     return {
         isAuth: state.auth.token != null,
+        userId: state.auth.userId,
         cart: state.cart.cart
     };
 }
@@ -183,7 +156,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
-        updateCart: (cart) => dispatch(actions.updateCart(cart))
+        updateCart: (cart) => dispatch(actions.updateCart(cart)),
+        emptyCart: (userId) => dispatch(actions.emptyCart(userId))
     };
 }
 

@@ -19,3 +19,10 @@ export const updateCart = (cart) => {
         cart: cart
     }
 }
+
+export const emptyCart = (userId) => {
+    return {
+        type: actions.CART_EMPTY,
+        userId: userId
+    }
+}

@@ -41,8 +41,6 @@ class App extends Component {
             )
         }
 
-        // console.log(this.props.cart);
-
         return (
             <Layout>
                 {routes}
