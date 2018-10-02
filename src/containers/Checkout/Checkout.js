@@ -97,6 +97,7 @@ class Checkout extends Component {
 
         if (this.props.isAuth) {
             this.props.emptyCart(this.props.userId);
+            this.props.history.push('/dashboard');
         } else {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/login');
