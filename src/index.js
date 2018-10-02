@@ -11,6 +11,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 // import reducer from './store/reducer/reducer';
 import authReducer from './store/reducer/auth';
+import cartReducer from './store/reducer/cart';
 
 import axios from 'axios';
 
@@ -19,7 +20,8 @@ axios.defaults.baseURL = 'https://simple-shirts.firebaseio.com';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    cart: cartReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

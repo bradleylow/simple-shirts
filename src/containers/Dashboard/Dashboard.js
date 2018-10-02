@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import * as actions from '../../store/actions/index';
 
 class Dashboard extends Component {
+
+    componentDidMount () {
+        console.log(this.props.cart);
+    }
 
     logoutHandler = () => {
         this.props.onLogout();
@@ -25,7 +28,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        userEmail: state.auth.email
+        userEmail: state.auth.email,
+        cart: state.cart.cart
     };
 }
 

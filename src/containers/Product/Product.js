@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import RadioButton from '../../components/UI/FormElements/RadioButton/RadioButton';
 import QuantityField from '../../components/UI/FormElements/QuantityField/QuantityField';
@@ -6,48 +7,18 @@ import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
 
+import * as actions from '../../store/actions/index';
+
 class Product extends Component {
     state = {
-        userId: null,
         product: {},
         quantity: 1,
         size: '',
-        sizeError: false,
-        cart: {
-            userId: 1,
-            items: [],
-            totalPrice: null
-        }
+        sizeError: false
     }
 
     componentDidMount() {
-        this.loadCart();
         this.loadProduct();
-    }
-
-    loadCart() {
-        if (this.state.userId === null) {
-
-            if (localStorage.getItem('cart')) {
-                let localCart = JSON.parse(localStorage.getItem('cart'));
-                this.setState({ cart: localCart });
-            }
-
-        } else {
-            axios.get('/cart.json')
-                .then(response => {
-                    let carts = Object.keys(response.data).map(i => response.data[i]),
-                        userCart;
-
-                    for (let i = 0; i < carts.length; i++) {
-                        if (carts[i].userId == this.state.userId) {
-                            userCart = carts[i];
-                        }
-                    }
-
-                    this.setState({ cart: userCart });
-                });
-        }
     }
 
     loadProduct() {
@@ -57,7 +28,7 @@ class Product extends Component {
                     let products = response.data;
 
                     for (let i = 0; i < products.length; i++) {
-                        if (products[i].id == this.props.match.params.id) {
+                        if (products[i].id === Number(this.props.match.params.id)) {
                             this.setState({ product: products[i] });
                         }
                     }
@@ -66,7 +37,7 @@ class Product extends Component {
         }
     }
 
-    sizeSelectorHandler(e) {
+    sizeSelectorHandler = (e) => {
         let el = e.target;
 
         this.setState({
@@ -75,19 +46,19 @@ class Product extends Component {
         });
     }
 
-    addQuantityHandler() {
+    addQuantityHandler = () => {
         if (this.state.quantity < 25) {
             this.setState({ quantity: this.state.quantity + 1 });
         }
     }
 
-    removeQuantityHandler() {
+    removeQuantityHandler = () => {
         if (this.state.quantity > 1) {
             this.setState({ quantity: this.state.quantity - 1 });
         }
     }
 
-    updateQuantityHandler(e) {
+    updateQuantityHandler = (e) => {
         let el = e.target,
             quantity = el.value;
 
@@ -99,25 +70,25 @@ class Product extends Component {
 
     }
 
-    quantityBlurHandler(e) {
+    quantityBlurHandler = (e) => {
         let el = e.target;
 
         if (el.value === '') {
             this.setState({ quantity: 1 })
         }
-    }x
+    }
 
-    maybeAddToCartHandler() {
+    maybeAddToCartHandler = () => {
         if (this.state.size !== '') {
-            this.addToCart();
             this.setState({ sizeError: false });
+            this.addToCart();
         } else {
             this.setState({ sizeError: true });
         }
     }
 
-    addToCart(cart) {
-        let items = this.state.cart.items,
+    addToCart = (cart) => {
+        let items = this.props.cart.items,
             product = this.state.product;
 
         product.size = this.state.size;
@@ -132,33 +103,36 @@ class Product extends Component {
         }
 
         let productTotalPrice = product.price * product.quantity;
-        let totalPrice = this.state.cart.totalPrice + productTotalPrice;
+        let totalPrice = this.props.cart.totalPrice + productTotalPrice;
 
-        this.setState({
-            cart: {
-                userId: this.state.userId,
-                items: items,
-                totalPrice: totalPrice
-            }
-        }, function() {
-            let data = {
-                userId: this.state.cart.userId,
-                items: this.state.cart.items,
-                totalPrice: this.state.cart.totalPrice
-            }
+        this.props.addToCart(this.props.userId, items, totalPrice);
+        this.props.history.push('/checkout');
 
-            if (this.state.userId === null) {
-                localStorage.setItem('cart', JSON.stringify(this.state.cart));
-                this.props.history.push('/checkout');
-            } else {
-                axios.post('/cart.json', data)
-                    .then(response => {
-                        this.props.history.push('/checkout');
-                    });
-            }
-
-
-        });
+        // this.setState({
+        //     cart: {
+        //         userId: this.state.userId,
+        //         items: items,
+        //         totalPrice: totalPrice
+        //     }
+        // }, function() {
+        //     let data = {
+        //         userId: this.state.cart.userId,
+        //         items: this.state.cart.items,
+        //         totalPrice: this.state.cart.totalPrice
+        //     }
+        //
+        //     if (this.state.userId === null) {
+        //         localStorage.setItem('cart', JSON.stringify(this.state.cart));
+        //         this.props.history.push('/checkout');
+        //     } else {
+        //         axios.post('/cart.json', data)
+        //             .then(response => {
+        //                 this.props.history.push('/checkout');
+        //             });
+        //     }
+        //
+        //
+        // });
     }
 
     render () {
@@ -226,13 +200,13 @@ class Product extends Component {
                             </div>
                             <QuantityField
                                 value={isNaN(this.state.quantity) ? '' : this.state.quantity}
-                                removeQuantity={this.removeQuantityHandler.bind(this)}
-                                addQuantity={this.addQuantityHandler.bind(this)}
-                                change={this.updateQuantityHandler.bind(this)}
-                                blur={this.quantityBlurHandler.bind(this)}
+                                removeQuantity={this.removeQuantityHandler}
+                                addQuantity={this.addQuantityHandler}
+                                change={this.updateQuantityHandler}
+                                blur={this.quantityBlurHandler}
                             />
                             <div className="product-actions">
-                                <button className="product-actions__button button button--blue add-to-cart w-full" onClick={this.maybeAddToCartHandler.bind(this)}>Add to Cart</button>
+                                <button className="product-actions__button button button--blue add-to-cart w-full" onClick={this.maybeAddToCartHandler}>Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -242,4 +216,17 @@ class Product extends Component {
     }
 }
 
-export default Product;
+const mapStateToProps = state => {
+    return {
+        userId: state.auth.userId,
+        cart: state.cart.cart
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addToCart: (userId, items, totalPrice) => dispatch(actions.addToCart(userId, items, totalPrice))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

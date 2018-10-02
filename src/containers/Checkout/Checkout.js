@@ -11,24 +11,26 @@ import * as actions from '../../store/actions/index';
 class Checkout extends Component {
 
     state = {
-        cart: null,
-        order: null
+        cart: null
     }
 
-    componentDidMount () {
-        this.loadCart();
-    }
-
-    loadCart() {
-        let cart;
-
-        if (localStorage.getItem('cart') && localStorage.getItem('cart') !== null) {
-            cart = JSON.parse(localStorage.getItem('cart'));
-
-            this.setState({ cart: cart });
-        }
+    componentWillMount () {
+        this.setState({
+            cart: this.props.cart
+        });
 
     }
+
+    // loadCart() {
+    //     let cart;
+    //
+    //     if (localStorage.getItem('cart') && localStorage.getItem('cart') !== null) {
+    //         cart = JSON.parse(localStorage.getItem('cart'));
+    //
+    //         this.setState({ cart: cart });
+    //     }
+    //
+    // }
 
     quantityUpdateHandler = (index, e) => {
         let cart = this.state.cart,
@@ -82,11 +84,12 @@ class Checkout extends Component {
     }
 
     updateCart = (cart) => {
-        this.setState({ cart: cart }, function() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        });
+        let totalPrice = this.calculateTotalPrice();
 
-        this.calculateTotalPrice();
+        cart.totalPrice = totalPrice;
+
+        this.setState({ cart: cart });
+        this.props.updateCart(cart);
     }
 
     calculateTotalPrice () {
@@ -97,36 +100,34 @@ class Checkout extends Component {
             updatedPrice = updatedPrice + (item.price * item.quantity);
         });
 
-        cart.totalPrice = updatedPrice;
-
-        this.setState({ cart: cart });
+        return updatedPrice;
     }
 
     placeOrderHandler = () => {
-        let cart = this.state.cart,
-            orders = [];
-
-        if (localStorage.getItem('orders')) {
-            orders = JSON.parse(localStorage.getItem('orders'));
-        }
-
-        let order = {
-            orderId: 100001,
-            datePlaced: new Date(),
-            cart: cart
-        }
-
-        if (this.props.isAuth) {
-            this.setState({ order: order }, function() {
-                orders.push(this.state.order);
-                localStorage.setItem('orders', JSON.stringify(orders));
-                this.clearCart();
-            });
-        } else {
-            this.props.onSetAuthRedirectPath('/checkout');
-            this.props.history.push('/login');
-        }
-
+        // let cart = this.state.cart,
+        //     orders = [];
+        //
+        // if (localStorage.getItem('orders')) {
+        //     orders = JSON.parse(localStorage.getItem('orders'));
+        // }
+        //
+        // let order = {
+        //     orderId: 100001,
+        //     datePlaced: new Date(),
+        //     cart: cart
+        // }
+        //
+        // if (this.props.isAuth) {
+        //     this.setState({ order: order }, function() {
+        //         orders.push(this.state.order);
+        //         localStorage.setItem('orders', JSON.stringify(orders));
+        //         this.clearCart();
+        //     });
+        // } else {
+        //     this.props.onSetAuthRedirectPath('/checkout');
+        //     this.props.history.push('/login');
+        // }
+        //
 
     }
 
@@ -144,7 +145,7 @@ class Checkout extends Component {
             </div>
         )
 
-        if (this.state.cart !== null) {
+        if (this.state.cart.items.length > 0) {
             cart = (
                 <div className="checkout__cart-container lg:flex lg:justify-between">
                     <CheckoutItems
@@ -174,13 +175,15 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.token != null
+        isAuth: state.auth.token != null,
+        cart: state.cart.cart
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+        updateCart: (cart) => dispatch(actions.updateCart(cart))
     };
 }
 

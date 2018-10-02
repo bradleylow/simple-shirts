@@ -41,6 +41,8 @@ class App extends Component {
             )
         }
 
+        // console.log(this.props.cart);
+
         return (
             <Layout>
                 {routes}
@@ -51,13 +53,13 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null
+        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAutoSignin: () => dispatch(actions.authCheckState())
+        onAutoSignin: () => dispatch(actions.authCheckState()),
     };
 };
 
