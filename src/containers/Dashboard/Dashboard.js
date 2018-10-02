@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 class Dashboard extends Component {
 
     componentDidMount () {
-        console.log(this.props.cart);
+        
     }
 
     logoutHandler = () => {
@@ -29,7 +29,6 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         userEmail: state.auth.email,
-        cart: state.cart.cart
     };
 }
 
