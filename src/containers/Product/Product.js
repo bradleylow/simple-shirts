@@ -105,7 +105,7 @@ class Product extends Component {
         let productTotalPrice = product.price * product.quantity;
         let totalPrice = this.props.cart.totalPrice + productTotalPrice;
 
-        this.props.addToCart(this.props.userId, items, totalPrice);
+        this.props.addToCart(this.props.token, this.props.userId, items, totalPrice);
         this.props.history.push('/checkout');
     }
 
@@ -193,13 +193,14 @@ class Product extends Component {
 const mapStateToProps = state => {
     return {
         userId: state.auth.userId,
+        token: state.auth.token,
         cart: state.cart.cart
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addToCart: (userId, items, totalPrice) => dispatch(actions.addToCart(userId, items, totalPrice))
+        addToCart: (token, userId, items, totalPrice) => dispatch(actions.addToCart(token, userId, items, totalPrice))
     };
 }
 

@@ -11,7 +11,7 @@ class Shop extends Component {
         products: null
     }
 
-    componentDidMount() {
+    componentWillMount() {
         axios.get('/products.json')
             .then( response => {
                 this.setState({ products: response.data });

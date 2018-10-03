@@ -176,6 +176,7 @@ class Auth extends Component {
         let authRedirect = null;
 
         if (this.props.isAuth) {
+            this.props.onAuthSetCart(this.props.token, this.props.userId);
             authRedirect = <Redirect to={this.props.authRedirectPath}/>
         }
 
@@ -196,6 +197,8 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuth: state.auth.token !== null,
+        token: state.auth.token,
+        userId: state.auth.userId,
         authRedirectPath: state.auth.authRedirectPath
     }
 };
@@ -203,6 +206,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isLogin) => dispatch(actions.auth(email, password, isLogin)),
+        onAuthSetCart: (token, userId) => dispatch(actions.cartAuthCheckState(token, userId)),
         onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath())
     };
 }

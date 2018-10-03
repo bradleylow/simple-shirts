@@ -94,8 +94,6 @@ class Checkout extends Component {
     }
 
     maybePlaceOrderHandler = () => {
-        let cart = this.state.cart;
-
         if (!this.props.isAuth) {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/login');
@@ -112,7 +110,7 @@ class Checkout extends Component {
 
                 let numOrders = null,
                     datePlaced = new Date();
-                    
+
                 if (!response.data) {
                     numOrders = 0
                 } else {

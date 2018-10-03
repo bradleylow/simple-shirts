@@ -7,3 +7,4 @@ export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 export const CART_ADD = 'CART_ADD';
 export const CART_UPDATE = 'CART_UPDATE';
 export const CART_EMPTY = 'CART_EMPTY';
+export const CART_AUTH_SET = 'CART_AUTH_SET';

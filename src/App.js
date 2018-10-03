@@ -18,6 +18,10 @@ class App extends Component {
         this.props.onAutoSetCart(localStorage.getItem('userId'));
     }
 
+    componentDidMount () {
+
+    }
+
     render() {
         let routes = (
             <Switch>
@@ -52,7 +56,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null,
+        isAuth: state.auth.token !== null || localStorage.getItem('token') !== null
     };
 };
 

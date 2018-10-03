@@ -2,7 +2,8 @@ export {
     addToCart,
     updateCart,
     emptyCart,
-    cartCheckState
+    cartCheckState,
+    cartAuthCheckState
 } from './cart'
 export {
     auth,
