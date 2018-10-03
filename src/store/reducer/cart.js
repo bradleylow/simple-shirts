@@ -11,23 +11,17 @@ const initialState = {
 
 const cartAdd = (state, action) => {
     return updateObject(state, {
-        cart: {
-            userId: action.cart.userId,
-            items: action.cart.items,
-            totalPrice: action.cart.totalPrice
-        }
+        cart: action.cart
     });
 }
 
 const cartUpdate = (state, action) => {
-    localStorage.setItem('cart', action.cart);
-
     return updateObject(state, {
         cart: action.cart
     });
 }
 
-const cartEmpty = (state, action) => {
+const cartEmpty = (state, action) => {    
     return updateObject(state, {
         cart: {
             userId: action.userId,

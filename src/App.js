@@ -13,8 +13,9 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
 
-    componentDidMount () {
+    componentWillMount () {
         this.props.onAutoSignin();
+        this.props.onAutoSetCart(localStorage.getItem('userId'));
     }
 
     render() {
@@ -58,6 +59,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAutoSignin: () => dispatch(actions.authCheckState()),
+        onAutoSetCart: (userId) => dispatch(actions.cartCheckState(userId))
     };
 };
 

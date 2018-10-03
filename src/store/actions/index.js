@@ -1,7 +1,8 @@
 export {
     addToCart,
     updateCart,
-    emptyCart
+    emptyCart,
+    cartCheckState
 } from './cart'
 export {
     auth,

@@ -107,32 +107,6 @@ class Product extends Component {
 
         this.props.addToCart(this.props.userId, items, totalPrice);
         this.props.history.push('/checkout');
-
-        // this.setState({
-        //     cart: {
-        //         userId: this.state.userId,
-        //         items: items,
-        //         totalPrice: totalPrice
-        //     }
-        // }, function() {
-        //     let data = {
-        //         userId: this.state.cart.userId,
-        //         items: this.state.cart.items,
-        //         totalPrice: this.state.cart.totalPrice
-        //     }
-        //
-        //     if (this.state.userId === null) {
-        //         localStorage.setItem('cart', JSON.stringify(this.state.cart));
-        //         this.props.history.push('/checkout');
-        //     } else {
-        //         axios.post('/cart.json', data)
-        //             .then(response => {
-        //                 this.props.history.push('/checkout');
-        //             });
-        //     }
-        //
-        //
-        // });
     }
 
     render () {

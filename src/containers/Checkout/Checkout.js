@@ -20,7 +20,6 @@ class Checkout extends Component {
         this.setState({
             cart: this.props.cart
         });
-
     }
 
     quantityUpdateHandler = (index, e) => {
@@ -113,9 +112,7 @@ class Checkout extends Component {
 
                 let numOrders = null,
                     datePlaced = new Date();
-
-                    console.log(datePlaced);
-
+                    
                 if (!response.data) {
                     numOrders = 0
                 } else {

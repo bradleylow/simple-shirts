@@ -29,7 +29,6 @@ export const logout = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('userEmail');
     localStorage.removeItem('expireDate');
-    localStorage.removeItem('cart');
     return {
         type: actions.AUTH_LOGOUT
     };
@@ -88,9 +87,7 @@ export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
 
-        if (!token) {
-            dispatch(logout());
-        } else {
+        if (token) {
             const expireDate = new Date(localStorage.getItem('expireDate'));
 
             if (expireDate <= new Date()) {

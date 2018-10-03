@@ -6,11 +6,12 @@ import * as actions from '../../store/actions/index';
 class Dashboard extends Component {
 
     componentDidMount () {
-        
+
     }
 
     logoutHandler = () => {
         this.props.onLogout();
+        this.props.emptyCart(this.props.userId);
         this.props.history.push('/');
     }
 
@@ -29,12 +30,14 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         userEmail: state.auth.email,
+        userId: state.auth.userId
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.logout())
+        onLogout: () => dispatch(actions.logout()),
+        emptyCart: (userId) => dispatch(actions.emptyCart(userId))
     };
 }
 
