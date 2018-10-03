@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import CheckoutItems from '../../components/Checkout/CheckoutItems/CheckoutItems';
 import CheckoutSummary from '../../components/Checkout/CheckoutSummary/CheckoutSummary';
 
+import axios from 'axios';
+
 import * as actions from '../../store/actions/index';
 
 
@@ -92,22 +94,47 @@ class Checkout extends Component {
         return updatedPrice;
     }
 
-    placeOrderHandler = () => {
+    maybePlaceOrderHandler = () => {
         let cart = this.state.cart;
 
-        if (this.props.isAuth) {
-            this.props.emptyCart(this.props.userId);
-            this.props.history.push('/dashboard');
-        } else {
+        if (!this.props.isAuth) {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/login');
+        } else {
+            this.placeOrder();
+            this.props.history.push('/dashboard');
         }
     }
 
-    clearCart () {
-        localStorage.removeItem('cart');
+    placeOrder () {
+        axios.get('/order.json?auth=' + this.props.token)
+            .then(response => {
+                const baseOrderId = 100000;
 
-        this.setState({ cart: null });
+                let numOrders = null,
+                    datePlaced = new Date();
+
+                    console.log(datePlaced);
+
+                if (!response.data) {
+                    numOrders = 0
+                } else {
+                    numOrders = Object.keys(response.data).length;
+                }
+
+                let order = {
+                    id: baseOrderId + numOrders + 1,
+                    userId: this.props.userId,
+                    orderData: this.props.cart,
+                    datePlaced: datePlaced
+                }
+
+                return axios.post('/order.json?auth=' + this.props.token, order);
+            })
+            .then(response => {
+                this.props.emptyCart(this.props.userId);
+            })
+
     }
 
     render () {
@@ -131,7 +158,7 @@ class Checkout extends Component {
                     />
                     <CheckoutSummary
                         cart={this.state.cart}
-                        placeOrder={this.placeOrderHandler}
+                        placeOrder={this.maybePlaceOrderHandler}
                         isAuth={this.props.isAuth}
                     />
                 </div>
@@ -149,6 +176,7 @@ class Checkout extends Component {
 const mapStateToProps = state => {
     return {
         isAuth: state.auth.token != null,
+        token: state.auth.token,
         userId: state.auth.userId,
         cart: state.cart.cart
     };
