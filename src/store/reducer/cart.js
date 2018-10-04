@@ -9,19 +9,13 @@ const initialState = {
     }
 };
 
-const cartAdd = (state, action) => {
-    return updateObject(state, {
-        cart: action.cart
-    });
-}
-
 const cartUpdate = (state, action) => {
     return updateObject(state, {
         cart: action.cart
     });
 }
 
-const cartEmpty = (state, action) => {    
+const cartEmpty = (state, action) => {
     return updateObject(state, {
         cart: {
             userId: action.userId,
@@ -33,7 +27,6 @@ const cartEmpty = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.CART_ADD: return cartAdd(state, action);
         case actions.CART_UPDATE: return cartUpdate(state, action);
         case actions.CART_EMPTY: return cartEmpty(state, action);
         default:

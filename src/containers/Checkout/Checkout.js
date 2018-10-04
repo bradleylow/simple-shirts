@@ -76,10 +76,10 @@ class Checkout extends Component {
     updateCart = (cart) => {
         let totalPrice = this.calculateTotalPrice();
 
-        cart.totalPrice = totalPrice;
+        cart.totalPrice = totalPrice
 
         this.setState({ cart: cart });
-        this.props.updateCart(cart);
+        this.props.updateCart(cart, this.props.token, this.props.userId);
     }
 
     calculateTotalPrice () {
@@ -180,7 +180,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
-        updateCart: (cart) => dispatch(actions.updateCart(cart)),
+        updateCart: (cart, token, userId) => dispatch(actions.updateCart(cart, token, userId)),
         emptyCart: (userId) => dispatch(actions.emptyCart(userId))
     };
 }
