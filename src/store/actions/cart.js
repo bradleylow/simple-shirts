@@ -2,27 +2,35 @@ import axios from 'axios';
 
 import * as actions from './actions';
 
-export const addToCart = (token, userId, items, totalPrice) => {
-    let cart = {
-        userId: userId,
-        items: items,
-        totalPrice: totalPrice
-    }
-
+export const updateCart = (cart, token, userId) => {
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    return {
-        type: actions.CART_ADD,
-        cart: {
-            userId: userId,
-            items: items,
-            totalPrice: totalPrice
-        }
-    }
-}
+    if (token && userId) {
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
 
-export const updateCart = (cart) => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+        axios.get('/cart.json' + queryParams)
+            .then(response => {
+                if (Object.keys(response.data).length === 0) {
+                    return axios.post('/cart.json?auth=' + token, cart);
+                } else {
+                    // let cartKey = null;
+                    //
+                    // for (let key in response.data) {
+                    //     cartKey = key;
+                    // }
+
+                    // TODO update the cart in database for userId
+                    // return axios.put('/cart.json/?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"', updatedCart);
+
+                }
+            })
+            .then(response => {
+                // console.log(response);
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+    }
 
     return {
         type: actions.CART_UPDATE,
@@ -36,6 +44,18 @@ export const emptyCart = (userId) => {
     return {
         type: actions.CART_EMPTY,
         userId: userId
+    }
+}
+
+export const addToCart = (token, userId, items, totalPrice) => {
+    return dispatch => {
+        let cart = {
+           userId: userId,
+           items: items,
+           totalPrice: totalPrice
+        }
+
+        dispatch(updateCart(cart, token, userId));
     }
 }
 
@@ -95,16 +115,17 @@ export const cartAuthCheckState = (token, userId) => {
 
                         updatedCart = mergedCart;
                     } else if (localCart && !fetchedCart) {
+                        localCart.userId = userId;
                         updatedCart = localCart;
                     } else if (!localCart && fetchedCart) {
                         updatedCart = fetchedCart;
                     } else {
-                        dispatch(emptyCart(userId));
+                        dispatch(updateCart({userId: userId, items: [], totalPrice: 0 }, token, userId ));
                     }
 
                     if (updatedCart) {
                         localStorage.setItem('cart', JSON.stringify(updatedCart));
-                        dispatch(updateCart(updatedCart));
+                        dispatch(updateCart(updatedCart, token , userId));
                     }
                 });
         }
