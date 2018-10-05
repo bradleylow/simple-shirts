@@ -13,22 +13,27 @@ export const updateCart = (cart, token, userId) => {
                 if (Object.keys(response.data).length === 0) {
                     return axios.post('/cart.json?auth=' + token, cart);
                 } else {
-                    // let cartKey = null;
-                    //
-                    // for (let key in response.data) {
-                    //     cartKey = key;
-                    // }
+                    let cartKey = null;
 
-                    // TODO update the cart in database for userId
-                    // return axios.put('/cart.json/?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"', updatedCart);
+                    for (let key in response.data) {
+                        cartKey = key;
+                    }
 
+                    console.log(cartKey);
+
+                    let data = {
+                        [cartKey]: cart
+                    }
+
+                    const queryParams = '?auth=' + token + '&userId="' + userId + '"';
+                    return axios.patch('/cart.json' + queryParams, data);
                 }
             })
             .then(response => {
-                // console.log(response);
+                
             })
             .catch(error => {
-                // console.log(error);
+                console.log(error);
             });
     }
 
