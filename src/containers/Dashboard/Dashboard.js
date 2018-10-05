@@ -53,7 +53,7 @@ class Dashboard extends Component {
                     <h4 className="order-container__heading">Orders</h4>
                     <OrderItems orders={this.state.orders} />
                 </div>
-                <div className="button__wrapper mt-12 text-center lg:text-right">
+                <div className="button__wrapper my-12 text-center lg:text-right">
                     <button className="button button--small button--danger" onClick={this.logoutHandler}>Logout</button>
                 </div>
             </div>
