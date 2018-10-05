@@ -50,3 +50,17 @@ body{
     }
 
 }
+
+table {
+    font-family: $font-main;
+    @include font-size(1.6);
+
+    thead {
+        th { border-bottom: 1px solid $color-medium-gray; }
+    }
+
+    th, td {
+		padding: 3px 5px;
+        text-align: left;
+    }
+}

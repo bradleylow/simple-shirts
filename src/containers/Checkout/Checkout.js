@@ -99,7 +99,6 @@ class Checkout extends Component {
             this.props.history.push('/login');
         } else {
             this.placeOrder();
-            this.props.history.push('/dashboard');
         }
     }
 
@@ -127,6 +126,7 @@ class Checkout extends Component {
                 return axios.post('/order.json?auth=' + this.props.token, order);
             })
             .then(response => {
+                this.props.history.push('/dashboard');
                 this.props.emptyCart(this.props.userId);
             })
 

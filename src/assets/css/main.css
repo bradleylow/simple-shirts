@@ -574,6 +574,16 @@ body {
     .overlay {
       display: none; } }
 
+table {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem; }
+  table thead th {
+    border-bottom: 1px solid #bfbfbf; }
+  table th, table td {
+    padding: 3px 5px;
+    text-align: left; }
+
 body,
 input,
 textarea {
@@ -708,6 +718,35 @@ span {
       @media only screen and (min-width: 1024px), (hover: hover) {
         .checkout__item .item-attr .remove-item:hover {
           opacity: 0.5; } }
+
+.dashboard__intro {
+  color: #fff;
+  padding: 20px;
+  background-color: #2789c6; }
+
+.order-container__heading {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 3px solid #2789c6; }
+
+.orders__item {
+  padding: 10px;
+  border-bottom: 1px solid #bfbfbf;
+  background-color: #fff; }
+  .orders__item:nth-of-type(2n) {
+    background-color: #f7f7f7; }
+  .orders__item:last-of-type {
+    border-bottom: none; }
+  .orders__item .item__header label {
+    display: inline-block;
+    margin-bottom: 3px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-size: 1.4rem;
+    color: #bfbfbf; }
+  .orders__item .item__body table th, .orders__item .item__body table td {
+    min-width: 150px; }
 
 .login__wrapper {
   position: relative;

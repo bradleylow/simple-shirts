@@ -1,0 +1,53 @@
+.dashboard {
+
+    &__intro {
+        color: $color-white;
+        padding: 20px;
+        background-color: $color-blue;
+    }//&__intro
+
+}//&.dashboard
+
+.order-container__heading {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 3px solid $color-blue;
+}
+
+.orders__item {
+    padding: 10px;
+    border-bottom: 1px solid $color-medium-gray;
+    background-color: $color-white;
+
+    &:nth-of-type(2n) { background-color: $color-lighter-gray; }
+
+    &:last-of-type{ border-bottom: none; }
+
+    .item {
+
+        &__header {
+
+            label {
+                display: inline-block;
+                margin-bottom: 3px;
+                font-family: $font-main;
+                font-weight: 500;
+                @include font-size(1.4);
+                color: $color-medium-gray;
+            }
+
+        }//&__header
+
+        &__body {
+
+            table {
+
+                th, td{ min-width: 150px;}
+
+            }//table
+
+        }//&__body
+
+    }//&__item
+
+}//.orders
