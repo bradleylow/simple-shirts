@@ -8,11 +8,18 @@
 
 }//&.dashboard
 
-.order-container__heading {
-    padding-bottom: 5px;
-    margin-bottom: 5px;
+.order-container {
     border-bottom: 3px solid $color-blue;
-}
+
+    &__heading {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 3px solid $color-blue;
+    }
+
+}//.order-container
+
+.order-container
 
 .orders__item {
     padding: 20px 10px;

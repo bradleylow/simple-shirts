@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import OrderItems from '../../components/OrderItems/OrderItems';
@@ -43,6 +44,19 @@ class Dashboard extends Component {
     }
 
     render () {
+        let orderItems = (
+            <div className="empty-orders my-12 text-center">
+                <h3 className="mb-12">You currently do not have any orders.</h3>
+                <NavLink to="/" className="button button--blue" exact>Go Shopping</NavLink>
+            </div>
+        )
+
+        if (this.state.orders.length > 0) {
+            orderItems = (
+                <OrderItems orders={this.state.orders} />
+            )
+        }
+
         return (
             <div className="dashboard-page dashboard">
                 <div className="dashboard__intro">
@@ -51,7 +65,7 @@ class Dashboard extends Component {
                 </div>
                 <div className="order-container mt-12 px-4 lg:px-0">
                     <h4 className="order-container__heading">Orders</h4>
-                    <OrderItems orders={this.state.orders} />
+                    {orderItems}
                 </div>
                 <div className="button__wrapper my-12 text-center lg:text-right">
                     <button className="button button--small button--danger" onClick={this.logoutHandler}>Logout</button>
