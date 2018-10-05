@@ -63,7 +63,7 @@ class Dashboard extends Component {
                     <h3 className="mb-6">Welcome to your Dashboard!</h3>
                     <p>You are logged in as <span className="font-medium">{this.props.userEmail}</span></p>
                 </div>
-                <div className="order-container mt-12 px-4 lg:px-0">
+                <div className="order-container mt-24 px-4 lg:px-0">
                     <h4 className="order-container__heading">Orders</h4>
                     {orderItems}
                 </div>
