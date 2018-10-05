@@ -9,9 +9,9 @@ import './assets/css/tailwind.css';
 import './assets/css/main.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-// import reducer from './store/reducer/reducer';
 import authReducer from './store/reducer/auth';
 import cartReducer from './store/reducer/cart';
+import productReducer from './store/reducer/products';
 
 import axios from 'axios';
 
@@ -21,7 +21,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    products: productReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

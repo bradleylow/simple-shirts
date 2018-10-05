@@ -16,10 +16,7 @@ class App extends Component {
     componentWillMount () {
         this.props.onAutoSignin();
         this.props.onAutoSetCart(localStorage.getItem('userId'));
-    }
-
-    componentDidMount () {
-
+        this.props.onGetProducts();
     }
 
     render() {
@@ -62,6 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onGetProducts: () => dispatch(actions.productsGet()),
         onAutoSignin: () => dispatch(actions.authCheckState()),
         onAutoSetCart: (userId) => dispatch(actions.cartCheckState(userId))
     };

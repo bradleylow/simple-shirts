@@ -1,4 +1,10 @@
 export {
+    auth,
+    logout,
+    setAuthRedirectPath,
+    authCheckState
+} from './auth';
+export {
     addToCart,
     updateCart,
     emptyCart,
@@ -6,8 +12,5 @@ export {
     cartAuthCheckState
 } from './cart'
 export {
-    auth,
-    logout,
-    setAuthRedirectPath,
-    authCheckState
-} from './auth';
+    productsGet
+} from './products'
