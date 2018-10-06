@@ -19,8 +19,6 @@ export const updateCart = (cart, token, userId) => {
                         cartKey = key;
                     }
 
-                    console.log(cartKey);
-
                     let data = {
                         [cartKey]: cart
                     }
@@ -30,7 +28,7 @@ export const updateCart = (cart, token, userId) => {
                 }
             })
             .then(response => {
-                
+
             })
             .catch(error => {
                 console.log(error);
@@ -98,9 +96,11 @@ export const cartAuthCheckState = (token, userId) => {
                         let mergedCart = {},
                             mergedItems = [];
 
-                        fetchedCart.items.forEach( fetchedItem => {
-                            mergedItems.push(fetchedItem);
-                        });
+                        if (fetchedCart.items) {
+                            fetchedCart.items.forEach( fetchedItem => {
+                                mergedItems.push(fetchedItem);
+                            });
+                        }
 
                         localCart.items.forEach(localItem => {
                             let foundIndex = mergedItems.findIndex(mergedItem => mergedItem.id === localItem.id && mergedItem.size === localItem.size);
