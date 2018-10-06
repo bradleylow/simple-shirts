@@ -3,6 +3,8 @@ import axios from 'axios';
 import * as actions from './actions';
 
 export const setProducts = (products) => {
+    localStorage.setItem('products', JSON.stringify(products));
+
     return {
         type: actions.PRODUCTS_SET,
         products: products
@@ -20,7 +22,7 @@ export const productsGet = () => {
                 dispatch(setProducts(products));
             })
             .catch(error => {
-                
+
             });
     }
 }
