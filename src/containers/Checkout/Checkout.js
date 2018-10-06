@@ -126,8 +126,16 @@ class Checkout extends Component {
                 return axios.post('/order.json?auth=' + this.props.token, order);
             })
             .then(response => {
-                this.props.history.push('/dashboard');
+
+                let emptyCart = {
+                    userId: this.props.userId,
+                    items: [],
+                    totalPrice: 0
+                }
+                
+                this.props.updateCart(emptyCart, this.props.token, this.props.userId);
                 this.props.emptyCart(this.props.userId);
+                this.props.history.push('/dashboard');
             })
 
     }
@@ -140,7 +148,7 @@ class Checkout extends Component {
             </div>
         )
 
-        if (this.state.cart.items.length > 0) {
+        if (this.state.cart.items && this.state.cart.items.length > 0) {
             cart = (
                 <div className="checkout__cart-container lg:flex lg:justify-between">
                     <CheckoutItems
