@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import RadioButton from '../../components/UI/FormElements/RadioButton/RadioButton';
 import QuantityField from '../../components/UI/FormElements/QuantityField/QuantityField';
@@ -11,10 +12,11 @@ import * as actions from '../../store/actions/index';
 
 class Product extends Component {
     state = {
-        product: {},
+        product: null,
         quantity: 1,
         size: '',
-        sizeError: false
+        sizeError: false,
+        productNotFound: false
     }
 
     componentDidMount() {
@@ -29,10 +31,18 @@ class Product extends Component {
 
                     for (let i = 0; i < products.length; i++) {
                         if (products[i].id === Number(this.props.match.params.id)) {
-                            this.setState({ product: products[i] });
+                            this.setState({
+                                product: products[i],
+                                productNotFound: false
+                            });
                         }
                     }
-
+                })
+                .catch(error => {
+                    this.setState({
+                        product: null,
+                        productNotFound: true
+                    })
                 });
         }
     }
@@ -110,26 +120,41 @@ class Product extends Component {
     }
 
     render () {
-        let productImg = <Loader type="inject"/>;
+        let product = <Loader type="full"/>;
 
-        if (this.state.product.image) {
-            productImg = (
-                <img src={require('../../assets/images/' + this.state.product.image)} alt={this.state.product.name + ' image'} className="product-page__img"/>
-            )
-        }
-
-        let sizeError = null;
-
-        if (this.state.sizeError) {
-            sizeError = (
-                <div className="size-selector__error">
-                    <p>Please select a size.</p>
+        if (this.state.productNotFound === true) {
+            product = (
+                <div className="product-page__error_container text-center">
+                    <h1>Sorry! Something went wrong.</h1>
+                    <p>We could not find the product at this moment. Please refresh the page or try again later.</p>
+                    <div className="button-wrapper my-12">
+                        <NavLink to="/" className="button button--small button--blue">Back to Shop</NavLink>
+                    </div>
                 </div>
             )
         }
 
-        return (
-            <div className="product-page">
+        if (this.state.product) {
+
+            let productImg = <Loader type="inject"/>;
+
+            if (this.state.product.image) {
+                productImg = (
+                    <img src={require('../../assets/images/' + this.state.product.image)} alt={this.state.product.name + ' image'} className="product-page__img"/>
+                )
+            }
+
+            let sizeError = null;
+
+            if (this.state.sizeError) {
+                sizeError = (
+                    <div className="size-selector__error">
+                        <p>Please select a size.</p>
+                    </div>
+                )
+            }
+
+            product = (
                 <div className="product-page__product flex flex-wrap lg:px-6 lg:-mx-12">
                     <div className="product-page__img-container image-cover w-full lg:w-2/3 lg:px-6">
                         {productImg}
@@ -185,6 +210,12 @@ class Product extends Component {
                         </div>
                     </div>
                 </div>
+            )
+        }
+
+        return (
+            <div className="product-page">
+                {product}
             </div>
         );
     }
