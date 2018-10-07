@@ -244,6 +244,7 @@ form .form__input {
     border-bottom: 1px solid #eee; }
     .slide-menu__nav ul li a {
       display: inline-block;
+      width: 100%;
       padding: 20px;
       font-size: 18px;
       font-size: 1.8rem; }
@@ -300,10 +301,22 @@ form .form__input {
     font-size: 1.6rem; }
 
 .logo {
-  background-color: #2789c6; }
+  background-color: #2789c6;
+  border: 1px solid transparent;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
   .logo h4 {
     color: #fff;
     line-height: 1.2; }
+  @media only screen and (min-width: 1024px), (hover: hover) {
+    .logo:hover {
+      background-color: #fff;
+      border-color: #2789c6; }
+      .logo:hover h4 {
+        color: #2789c6; } }
 
 header {
   position: fixed;
