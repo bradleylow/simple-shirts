@@ -27,9 +27,6 @@ export const updateCart = (cart, token, userId) => {
                     return axios.patch('/cart.json' + queryParams, data);
                 }
             })
-            .then(response => {
-
-            })
             .catch(error => {
                 console.log(error);
             });

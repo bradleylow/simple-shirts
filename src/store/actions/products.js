@@ -22,7 +22,7 @@ export const productsGet = () => {
                 dispatch(setProducts(products));
             })
             .catch(error => {
-
+                console.log(error);
             });
     }
 }
