@@ -13,7 +13,8 @@ import * as actions from '../../store/actions/index';
 class Checkout extends Component {
 
     state = {
-        cart: null
+        cart: null,
+        orderError: false
     }
 
     componentWillMount () {
@@ -132,15 +133,38 @@ class Checkout extends Component {
                     items: [],
                     totalPrice: 0
                 }
-                
+
                 this.props.updateCart(emptyCart, this.props.token, this.props.userId);
                 this.props.emptyCart(this.props.userId);
                 this.props.history.push('/dashboard');
             })
+            .catch(error => {
+                this.setState({ orderError: true })
+            });
 
     }
 
+    dismissError = () => {
+        this.setState({ orderError: false });
+    }
+
     render () {
+        let orderError = null;
+
+        if (this.state.orderError === true) {
+            orderError = (
+                <div className="modal modal--error">
+                    <div className="modal__content">
+                        <h5 className="text-center mb-8">Something went wrong!</h5>
+                        <p>Your order was not placed. Please try again at a later time.</p>
+                        <div className="button-wrapper mt-12 text-center">
+                            <button className="button button--small button--blue" onClick={this.dismissError}>Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         let cart = (
             <div className="checkout__empty-container text-center">
                 <h1>Your Cart is Empty</h1>
@@ -170,6 +194,7 @@ class Checkout extends Component {
 
         return (
             <div className="checkout">
+                {orderError}
                 {cart}
             </div>
         );
