@@ -1,9 +1,18 @@
 .logo {
     background-color: $color-blue;
+    border: 1px solid transparent;
+    @include transition-style;
 
     h4{
         color: $color-white;
         line-height: 1.2;
+    }
+
+    @include hover {
+        background-color: $color-white;
+        border-color: $color-blue;
+
+        h4{ color: $color-blue; }
     }
 
 }//.logo
@@ -46,10 +55,6 @@ header {
 
                 &.active {
                     color: $color-blue;
-
-                    // &::after {
-                    //     width: 100%;
-                    // }
                 }
             }//a
 
