@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
@@ -8,6 +8,7 @@ import Checkout from './containers/Checkout/Checkout';
 import Dashboard from './containers/Dashboard/Dashboard';
 import Shop from './containers/Shop/Shop';
 import Product from './containers/Product/Product';
+import NotFound from './containers/NotFound/NotFound';
 
 import * as actions from './store/actions/index';
 
@@ -26,7 +27,7 @@ class App extends Component {
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/login" component={Auth} />
                 <Route path="/" exact component={Shop} />
-                <Redirect to="/"/>
+                <Route component={NotFound} />
             </Switch>
         )
 
@@ -38,7 +39,7 @@ class App extends Component {
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/login" component={Auth} />
                     <Route path="/" exact component={Shop} />
-                    <Redirect to="/"/>
+                    <Route component={NotFound} />
                 </Switch>
             )
         }
