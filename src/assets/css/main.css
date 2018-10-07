@@ -315,10 +315,39 @@ header {
 
 .main-nav ul li {
   margin-right: 30px;
+  padding: 5px 5px;
   font-size: 18px;
   font-size: 1.8rem; }
   .main-nav ul li:last-of-type {
     margin-right: 0; }
+  .main-nav ul li a {
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+    .main-nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #2789c6;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      transition: all 0.3s ease; }
+    .main-nav ul li a.active {
+      color: #2789c6; }
+  @media only screen and (min-width: 1024px), (hover: hover) {
+    .main-nav ul li:hover a {
+      color: #2789c6; }
+      .main-nav ul li:hover a::after {
+        width: 100%; } }
 
 .nav-toggle {
   position: relative;

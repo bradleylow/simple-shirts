@@ -23,9 +23,49 @@ header {
 
         li {
             margin-right: 30px;
+            padding: 5px 5px;
             @include font-size(1.8);
 
             &:last-of-type{ margin-right: 0; }
+
+            a {
+                display: block;
+                position: relative;
+                @include transition-style;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -3px;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background-color: $color-blue;
+                    @include transition-style;
+                }
+
+                &.active {
+                    color: $color-blue;
+
+                    // &::after {
+                    //     width: 100%;
+                    // }
+                }
+            }//a
+
+            @include hover {
+
+                a {
+                    color: $color-blue;
+
+                    &::after {
+                        width: 100%;
+                    }
+
+                }//a
+
+            }
+
         }//li
 
     }//ul
@@ -66,7 +106,7 @@ header {
 
             &--bottom { opacity: 0; }
         }
-        
+
     }
 
 

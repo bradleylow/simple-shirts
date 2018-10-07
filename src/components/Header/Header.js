@@ -13,14 +13,14 @@ const header = (props) =>  {
             <nav className="main-nav list-reset hidden lg:block">
                 <ul className="flex">
                     <li>
-                        <NavLink to='/' exact>Shop</NavLink>
+                        <NavLink to='/' activeClassName="active" exact>Shop</NavLink>
                     </li>
                     { !props.isAuth
-                        ? <li><NavLink to='/login' exact>Login</NavLink></li>
-                        : <li><NavLink to='/dashboard' exact>Dashboard</NavLink></li>
+                        ? <li><NavLink to='/login' activeClassName="active" exact>Login</NavLink></li>
+                        : <li><NavLink to='/dashboard' activeClassName="active" exact>Dashboard</NavLink></li>
                     }
                     <li>
-                        <NavLink to='/checkout' exact>Cart</NavLink>
+                        <NavLink to='/checkout' activeClassName="active" exact>Cart</NavLink>
                     </li>
                 </ul>
             </nav>
