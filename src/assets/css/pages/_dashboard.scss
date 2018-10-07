@@ -9,6 +9,8 @@
 }//&.dashboard
 
 .order-container {
+    position: relative;
+    min-height: 200px;
     border-bottom: 3px solid $color-blue;
 
     &__heading {
@@ -18,8 +20,6 @@
     }
 
 }//.order-container
-
-.order-container
 
 .orders__item {
     padding: 20px 10px;

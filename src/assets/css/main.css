@@ -797,25 +797,23 @@ span {
   background-color: #2789c6; }
 
 .order-container {
+  position: relative;
+  min-height: 200px;
   border-bottom: 3px solid #2789c6; }
   .order-container__heading {
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 3px solid #2789c6; }
 
-.order-container
 .orders__item {
   padding: 20px 10px;
   border-bottom: 2px solid #bfbfbf;
   background-color: #fff; }
-  .order-container
-.orders__item:nth-of-type(2n) {
+  .orders__item:nth-of-type(2n) {
     background-color: #f7f7f7; }
-  .order-container
-.orders__item:last-of-type {
+  .orders__item:last-of-type {
     border-bottom: none; }
-  .order-container
-.orders__item .item__header label {
+  .orders__item .item__header label {
     display: inline-block;
     margin-bottom: 3px;
     font-family: "Roboto", sans-serif;
@@ -823,19 +821,14 @@ span {
     font-size: 14px;
     font-size: 1.4rem;
     color: #bfbfbf; }
-  .order-container
-.orders__item .item__body .item__body__heading {
+  .orders__item .item__body .item__body__heading {
     color: #bfbfbf; }
-  .order-container
-.orders__item .item__body table th, .order-container
-.orders__item .item__body table td {
+  .orders__item .item__body table th, .orders__item .item__body table td {
     min-width: 150px; }
-  .order-container
-.orders__item .item__products .item__product {
+  .orders__item .item__products .item__product {
     background-color: #fff;
     border: 1px solid #eee; }
-    .order-container
-.orders__item .item__products .item__product .product__detail {
+    .orders__item .item__products .item__product .product__detail {
       display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
@@ -846,17 +839,13 @@ span {
       -ms-align-items: center;
       align-items: center;
       margin-bottom: 5px; }
-      .order-container
-.orders__item .item__products .item__product .product__detail:last-of-type {
+      .orders__item .item__products .item__product .product__detail:last-of-type {
         margin-bottom: 0; }
-      .order-container
-.orders__item .item__products .item__product .product__detail .product__name {
+      .orders__item .item__products .item__product .product__detail .product__name {
         font-weight: 500; }
-      .order-container
-.orders__item .item__products .item__product .product__detail span {
+      .orders__item .item__products .item__product .product__detail span {
         display: inline-block; }
-        .order-container
-.orders__item .item__products .item__product .product__detail span.product__label {
+        .orders__item .item__products .item__product .product__detail span.product__label {
           min-width: 31px;
           margin-right: 5px;
           font-family: "Roboto", sans-serif;
@@ -864,8 +853,7 @@ span {
           color: #bfbfbf;
           font-size: 12px;
           font-size: 1.2rem; }
-        .order-container
-.orders__item .item__products .item__product .product__detail span.product__value p {
+        .orders__item .item__products .item__product .product__detail span.product__value p {
           font-size: 14px;
           font-size: 1.4rem; }
 

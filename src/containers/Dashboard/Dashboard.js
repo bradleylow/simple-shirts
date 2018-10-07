@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import OrderItems from '../../components/OrderItems/OrderItems';
+import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
 
@@ -11,7 +12,7 @@ import * as actions from '../../store/actions/index';
 class Dashboard extends Component {
 
     state = {
-        orders: [],
+        orders: null,
         ordersError: false
     }
 
@@ -68,17 +69,21 @@ class Dashboard extends Component {
             )
         }
 
-        let orderItems = (
-            <div className="empty-orders my-12 text-center">
-                <h3 className="mb-12">You currently do not have any orders.</h3>
-                <NavLink to="/" className="button button--blue" exact>Go Shopping</NavLink>
-            </div>
-        )
+        let orderItems = <Loader type="inject" />
 
-        if (this.state.orders.length > 0) {
-            orderItems = (
-                <OrderItems orders={this.state.orders} />
-            )
+        if (this.state.orders) {
+            if (this.state.orders.length > 0) {
+                orderItems = (
+                    <OrderItems orders={this.state.orders} />
+                )
+            } else {
+                orderItems = (
+                    <div className="empty-orders my-12 text-center">
+                        <h3 className="mb-12">You currently do not have any orders.</h3>
+                        <NavLink to="/" className="button button--blue" exact>Go Shopping</NavLink>
+                    </div>
+                )
+            }
         }
 
         return (
