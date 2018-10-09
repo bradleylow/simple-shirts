@@ -160,6 +160,9 @@ class Auth extends Component {
                 case 'MISSING_PASSWORD':
                     message = 'Password is missing';
                     break;
+                case 'WEAK_PASSWORD : Password should be at least 6 characters':
+                    message = 'Password must be 6 characters or longer';
+                    break;
                 case 'EMAIL_NOT_FOUND':
                 case 'INVALID_PASSWORD':
                     message = 'Incorrect email or password';
