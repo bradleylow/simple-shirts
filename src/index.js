@@ -31,7 +31,7 @@ const store = createStore(rootReducer, composeEnhancers(
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter basename="/simple-shirts-app/">
+        <BrowserRouter>
             <App />
         </BrowserRouter>
     </Provider>
