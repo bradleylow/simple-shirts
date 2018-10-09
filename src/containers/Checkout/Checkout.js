@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import CheckoutItems from '../../components/Checkout/CheckoutItems/CheckoutItems';
 import CheckoutSummary from '../../components/Checkout/CheckoutSummary/CheckoutSummary';
+import Loader from '../../components/UI/Loader/Loader';
 
 import axios from 'axios';
 
@@ -14,7 +15,8 @@ class Checkout extends Component {
 
     state = {
         cart: null,
-        orderError: false
+        orderError: false,
+        orderPlaced: false
     }
 
     componentWillMount () {
@@ -100,6 +102,7 @@ class Checkout extends Component {
             this.props.history.push('/login');
         } else {
             this.placeOrder();
+            this.setState({ orderPlaced: true })
         }
     }
 
@@ -165,6 +168,12 @@ class Checkout extends Component {
             )
         }
 
+        let orderPlaced = null;
+
+        if (this.state.orderPlaced) {
+            orderPlaced = <Loader type="inject" />;
+        }
+
         let cart = (
             <div className="checkout__empty-container text-center">
                 <h1>Your Cart is Empty</h1>
@@ -194,6 +203,7 @@ class Checkout extends Component {
 
         return (
             <div className="checkout">
+                {orderPlaced}
                 {orderError}
                 {cart}
             </div>
