@@ -150,7 +150,12 @@ class Auth extends Component {
         if (this.props.error) {
             let message = this.props.error.message;
 
+            console.log(message);
+
             switch (message) {
+                case 'MISSING_EMAIL':
+                    message = 'Email is missing';
+                    break;
                 case 'EMAIL_EXISTS':
                     message = 'Email is already in use';
                     break;
