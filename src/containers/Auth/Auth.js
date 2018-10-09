@@ -122,20 +122,22 @@ class Auth extends Component {
                             touched={formElement.config.touched}
                             changed={(e) => this.inputChangedHandler(e, formElement.id)} />
                     ))}
-                    <div className="form__row text-center">
-                        <button type="submit" className="button button--blue">
-                            {this.state.isLogin === true ? 'Login' : 'Sign Up'}
-                        </button>
+                    <div className="form__row flex justify-between md:flex-wrap items-center">
+                        <div className="button-wrapper w-1/2 md:w-full md:text-center">
+                            <button type="submit" className="button button--blue">
+                                {this.state.isLogin === true ? 'Login' : 'Sign Up'}
+                            </button>
+                        </div>
+                        <div className="auth-state text-right md:text-center w-1/2 md:w-full md:mt-12">
+                            <p className="mb-2 whitespace-no-wrap">
+                                {this.state.isLogin === true ? 'Don\'t have an account?' : 'Already have an account?'}
+                            </p>
+                            <span onClick={this.switchAuthStateHandler}>
+                                {this.state.isLogin === true ? 'Create an Account' : 'Login into Account'}
+                            </span>
+                        </div>
                     </div>
                 </form>
-                <div className="auth-state text-center mt-12">
-                    <p className="mb-2">
-                        {this.state.isLogin === true ? 'Don\'t have an account?' : 'Already have an account?'}
-                    </p>
-                    <span onClick={this.switchAuthStateHandler}>
-                        {this.state.isLogin === true ? 'Create an Account' : 'Login into Account'}
-                    </span>
-                </div>
             </div>
         );
 
