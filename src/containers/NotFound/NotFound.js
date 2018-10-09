@@ -6,7 +6,7 @@ class NotFound extends Component {
     render () {
 
         return (
-            <div className="page-not-found">
+            <div className="page-not-found mx-4 lg: mx-0">
                 <h1>Oops!</h1>
                 <p>We can't seem to find what you're looking for.</p>
                 <div className="button-wrapper my-12">
