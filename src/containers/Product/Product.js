@@ -98,7 +98,7 @@ class Product extends Component {
     }
 
     addToCart = (cart) => {
-        let items = this.props.cart.items,
+        let items = this.props.cart.items ? this.props.cart.items : [],
             product = this.state.product;
 
         product.size = this.state.size;
