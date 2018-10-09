@@ -754,9 +754,9 @@ span {
         font-size: 16px;
         font-size: 1.6rem; }
       .checkout__item .item-attr > div.item-attr__size {
-        width: 60%; }
+        width: 50%; }
       .checkout__item .item-attr > div.item-attr__quantity {
-        width: 40%; }
+        width: 50%; }
       @media only screen and (min-width: 992px) {
         .checkout__item .item-attr > div {
           width: auto !important;

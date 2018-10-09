@@ -58,11 +58,11 @@
             }
 
             &.item-attr__size{
-                width: 60%
+                width: 50%
             }
 
             &.item-attr__quantity{
-                width: 40%;
+                width: 50%;
             }
 
             @include media((min-width: $media-lg)) {
