@@ -43,6 +43,7 @@ class Dashboard extends Component {
     }
 
     logoutHandler = () => {
+        this.props.onSetAuthRedirectPath('/');
         this.props.onLogout();
         this.props.emptyCart(this.props.userId);
         this.props.history.push('/');
@@ -115,6 +116,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
         onLogout: () => dispatch(actions.logout()),
         emptyCart: (userId) => dispatch(actions.emptyCart(userId))
     };
