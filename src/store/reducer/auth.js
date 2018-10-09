@@ -7,7 +7,7 @@ const initialState = {
     email: null,
     error: null,
     loading: false,
-    authRedirectPath: '/'
+    authRedirectPath: '/dashboard'
 };
 
 const authStart = (state, action) => {
