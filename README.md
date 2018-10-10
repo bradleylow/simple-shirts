@@ -2,6 +2,14 @@
 
 A t-shirt store built with [React](https://reactjs.org/) for learning purposes.
 
+## Project Objectives
+
+* Handle user registration and login
+* Adding, removing, and updating of shopping cart
+* Allow registered users to keep their shopping carts when logged out
+* Allow registered users to view order history
+
+
 ## Demo
 
 [http://simpleshirts.bradleylow.com/](http://simpleshirts.bradleylow.com/)
